@@ -1,8 +1,0 @@
-# Configuración base del Jupyter Book
-title: "Fundamentos de Programación - Universidad de Antioquia"
-author: "Instituto de Matemáticas - Facultad de Ciencias Exactas y Naturales"
-logo: ""
-only_build_toc_files: true
-
-execute:
-  execute_notebooks: auto

@@ -1,0 +1,23 @@
+# ================================
+# CONFIGURACIÓN MÍNIMA CORRECTA
+# ================================
+
+root: intro
+
+title: "Fundamentos de Programación"
+author: "Marco Julio"
+logo: ""
+
+execute:
+  execute_notebooks: force
+
+html:
+  favicon: ""
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: true
+
+repository:
+  url: https://github.com/marco-canas/fundamentos_de_programacion
+  branch: main
+  path_to_book: ""
