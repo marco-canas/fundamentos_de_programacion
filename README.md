@@ -1,6 +1,5 @@
-# Fundamentos de Programación 
 
-# Fundamentos de Programación  
+# [Fundamentos de Programación](https://www.youtube.com/watch?v=tPvvNCr_y_0)  
 ### Instituto de Matemáticas – Facultad de Ciencias Exactas y Naturales  
 ### Universidad de Antioquia – UdeA  
 ### Código del curso: 314029 – Vigencia 2025  
