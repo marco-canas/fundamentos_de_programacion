@@ -1,0 +1,27 @@
+format: jb-book
+root: intro
+
+chapters:
+  - file: programa/Programa_Fundamentos_Programacion
+  - part: "Clases"
+    chapters:
+      - file: clases/unidad1/index
+      - file: clases/unidad2/index
+      - file: clases/unidad3/index
+      - file: clases/unidad4/index
+  - part: "Notebooks"
+    chapters:
+      - file: notebooks/unidad1/index
+      - file: notebooks/unidad2/index
+      - file: notebooks/unidad3/index
+      - file: notebooks/unidad4/index
+  - part: "Talleres"
+    chapters:
+      - file: talleres/taller1/index
+      - file: talleres/taller2/index
+      - file: talleres/taller3/index
+      - file: talleres/taller4/index
+  - part: "Proyectos"
+    chapters:
+      - file: proyectos/guia/index
+      - file: proyectos/ejemplos/index
