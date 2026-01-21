@@ -3,10 +3,10 @@
 ## 1. Información General
 
 **Nombre del curso:** Fundamentos de Programación\
-**Programa académico:** Estadística\
+**Programa académico:** Matemáticas\
 **Unidad académica:** Facultad de Ciencias Exactas y Naturales\
 **Código:** 314029\
-**Vigencia:** 2025\
+**Vigencia:** 2026\
 **Tipo de curso:** Obligatorio, Básico\
 **Características:** Validable, Habilitable\
 **Modalidad:** Presencial\
@@ -47,9 +47,9 @@ aplicada.
 
 ------------------------------------------------------------------------
 
-## 5. Descripción de Contenidos
+# 5. Descripción de Contenidos
 
-### **Unidad 1: Elementos de programación**
+## **Unidad 1: Elementos de programación**
 
 -   Introducción al curso\
 -   Lenguajes de programación\
@@ -57,19 +57,19 @@ aplicada.
 -   Tipos de datos, operadores, estructuras de datos estáticas y
     dinámicas
 
-### **Unidad 2: Estructuras de control**
+## **Unidad 2: Estructuras de control**
 
 -   Estructuras condicionales simple y compuesta\
 -   Condicionales múltiples y anidadas\
 -   Iteración definida e indefinida
 
-### **Unidad 3: Funciones**
+## **Unidad 3: Funciones**
 
 -   Funciones incorporadas\
 -   Módulos y submódulos\
 -   Definición de funciones, ámbito, problemas de aplicación
 
-### **Unidad 4: SQL y visualización**
+## **Unidad 4: SQL y visualización**
 
 -   Fundamentos de SQL\
 -   Creación, filtros, particionamiento\
@@ -77,7 +77,7 @@ aplicada.
 
 ------------------------------------------------------------------------
 
-## 6. Metodología
+# 6. Metodología
 
 **Estrategias didácticas:**\
 Clases magistrales, aprendizaje basado en proyectos, talleres de
@@ -101,7 +101,7 @@ enfoque intercultural.
 
 ------------------------------------------------------------------------
 
-## 7. Evaluación
+# 7. Evaluación
 
 Evaluación continua orientada a procesos y resultados de aprendizaje.\
 El profesor concertará porcentajes y fechas de parciales, quices,
@@ -109,14 +109,14 @@ talleres, exposiciones y proyectos.
 
 ------------------------------------------------------------------------
 
-## 8. Bibliografía
+# 8. Bibliografía
 
-### India
+## India
 
-**Dixit, R. (2023). *Data Analysis with Python*.**\
+[**Dixit, R. (2023). *Data Analysis with Python*.**](https://read.amazon.com/?_encoding=UTF8&asin=B0BBB56L4X&consumptionLimitReached=false&deviceAccountIds=A1032123ZASLV79K77QP&hasMultimedia=false&requiredCapabilities=EBOK_PURCHASE_ALLOWED&ref=sr_rn_kfw)\
 Temas: Python básico, NumPy, Pandas, Matplotlib, análisis paso a paso.
 
-### Australia
+## Australia
 
 **Hughes, S. et al. (2023). *SQL Query Design Patterns and Best
 Practices*.**\
@@ -124,13 +124,13 @@ Temas: CTE, agregaciones, ventanas, JSON, organización de consultas.
 
 ------------------------------------------------------------------------
 
-## 9. Comunidad Académica
+# 9. Comunidad Académica
 
 Participantes responsables de la elaboración del microcurrículo
 (información pendiente de completar).
 
 ------------------------------------------------------------------------
 
-## 10. Aprobación
+# 10. Aprobación
 
 Aprobado por el Consejo de Unidad Académica según acta correspondiente.
