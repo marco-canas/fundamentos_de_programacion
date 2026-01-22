@@ -8,9 +8,31 @@
 * El contenido de este curso es: 
 
 Contents 
-1. Introducing Python Structure Objectives A brief history of Python Versions of Python Features of Python General purpose Interpreted High level Multiparadigm Open source Portable Extensible Embeddable/Integrated Interactive Dynamically typed Python use cases Automation Web scraping Healthcare Finance and banking Data analytics AI/ML Conclusion 
-Questions 
-Points to remember   
+1. Introducing Python Structure 
+   - Objectives 
+   - A brief history of Python 
+   - Versions of Python 
+   - Features of Python 
+     * General purpose 
+     * Interpreted 
+     * High level 
+     * Multiparadigm 
+     * Open source 
+     * Portable 
+     * Extensible 
+     * Embeddable/Integrated 
+     * Interactive 
+     * Dynamically typed 
+     * Python use cases 
+       - Automation 
+       - Web scraping 
+       - Healthcare 
+       - Finance and banking 
+       - Data analytics 
+       - AI/ML 
+    - Conclusion 
+    - Questions 
+    - Points to remember   
 2. Environment Setup for Development Structure Objectives 
 
 Downloading and installing the Anaconda package Testing the installation Testing Python in interactive shell Running and testing Jupyter Notebook Conclusion 
