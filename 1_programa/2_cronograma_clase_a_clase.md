@@ -1,9 +1,4 @@
 
-Dado que hoy es **16 de abril de 2026** y apenas están comenzando el **Capítulo 7**, el cronograma original presenta un retraso. Para cumplir con tu solicitud de terminar con el último parcial el **jueves 4 de junio de 2026**, he ajustado las fechas y la distribución de temas.
-
-He compactado algunas sesiones y reorganizado las evaluaciones restantes (Parcial 3 y Parcial 4) para que el contenido de análisis de datos (Pandas, NumPy y Matplotlib) no se vea sacrificado.
-
-Aquí tienes el cronograma actualizado:
 
 # Cronograma Actualizado: Fundamentos de Programación (314029)
 **Estado actual:** Iniciando Capítulo 7 (16 de abril)  
