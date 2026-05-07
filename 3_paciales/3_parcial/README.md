@@ -1,0 +1,7 @@
+
+
+Prompt para el diseño de los ejercicios de estudio para el parcial 3. 
+
+Dame, por favor, veinte preguntas de entrenamiento para el parcial 3 del curso de fundamentos de matemáticas para formación del matemáticos puros de la Universidad de Antioquia en este curso de Fundamentos de programación con Python con un enfoque de formación hacia la ciencia de datos, el análisis de datos y la analítica de datos. Has los 20 ejercicios de buen nivel sabiendo que estos son estudiantes de segundo semestre ya formados en Fundamentos de Lógica, Álgebra y Trigonometría, geometría euclidiana y analíticas, geometría vectorial y álgebra lineal. Los temas a evaluar son: funciones de usuario de Python, Loop de Python, Condicionales en Python, What is data analysis?
+Data analysis versus data analytics, Why do we need data analysis?, Types of data analysis, Process flow of data analysis, Types of data, Tools for data analysis in Python, elementos de Pandas para ciencia de datos, y elementos de NumPy para ciencia de datos.   
+
