@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, print-scale: 1.0;">
+    <title>Infografía | Análisis de Datos - Caso Caucasia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Configuración base para impresión / PDF */
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+            }
+            .infografia {
+                box-shadow: none;
+                margin: 0 auto;
+                page-break-after: avoid;
+                break-inside: avoid;
+            }
+            .page-break {
+                page-break-before: avoid;
+            }
+            .diag-box {
+                break-inside: avoid;
+            }
+        }
+
+        body {
+            background: #eef2f5;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* Contenedor principal estilo infografía profesional */
+        .infografia {
+            max-width: 1100px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+            font-family: inherit;
+        }
+
+        /* Encabezado temático */
+        .header {
+            background: linear-gradient(135deg, #0B3B2F 0%, #1A5F4A 100%);
+            padding: 32px 40px 28px 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header h1 span {
+            background: #F4C542;
+            color: #0B3B2F;
+            font-size: 1.2rem;
+            padding: 4px 12px;
+            border-radius: 40px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 12px;
+            font-weight: 600;
+        }
+
+        .header .sub {
+            font-size: 1rem;
+            opacity: 0.85;
+            border-left: 3px solid #F4C542;
+            padding-left: 16px;
+            margin-top: 12px;
+            font-weight: 400;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            flex-wrap: wrap;
+        }
+
+        /* Grid de contenidos */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            padding: 40px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            border: 1px solid #e9edf2;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #F8FAFE;
+            padding: 20px 24px 12px 24px;
+            border-bottom: 2px solid #E9EDF2;
+        }
+
+        .card-header h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1E3A2F;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header h2 i {
+            font-size: 1.8rem;
+        }
+
+        .card-content {
+            padding: 20px 24px 24px;
+        }
+
+        /* estilos estadísticos y números */
+        .kpi-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .kpi {
+            background: #F2F6F9;
+            border-radius: 24px;
+            padding: 12px 16px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .kpi-number {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #1E5A48;
+            line-height: 1;
+        }
+
+        .kpi-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #5e6f8d;
+            letter-spacing: 0.5px;
+        }
+
+        .insight {
+            background: #FFF6E5;
+            border-left: 6px solid #F4C542;
+            padding: 16px 18px;
+            border-radius: 20px;
+            margin: 20px 0 12px;
+        }
+
+        .insight p {
+            font-weight: 500;
+            color: #3a2c1a;
+        }
+
+        .badge {
+            background: #1E3A2F;
+            color: white;
+            font-size: 0.7rem;
+            border-radius: 30px;
+            padding: 4px 12px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .codigo-muestra {
+            background: #1E2A2F;
+            color: #D9E6F2;
+            font-family: 'Courier New', monospace;
+            padding: 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        /* tabla resumen */
+        .resumen-tabla {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .resumen-tabla th {
+            text-align: left;
+            background: #EFF3F8;
+            padding: 10px 8px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .resumen-tabla td {
+            padding: 8px 8px;
+            border-bottom: 1px solid #e2e7ed;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #C44536;
+        }
+
+        .footer-note {
+            background: #F0F3F8;
+            padding: 20px 40px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #4a5b6e;
+            border-top: 1px solid #dfe4ea;
+        }
+
+        .proxima {
+            background: #E9F0EC;
+            margin-top: 12px;
+            border-radius: 24px;
+            padding: 12px 16px;
+            text-align: center;
+        }
+
+        /* para responsivo y pdf */
+        @media (max-width: 780px) {
+            .grid-2col {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+            .header {
+                padding: 24px;
+            }
+        }
+        .icon-emoj {
+            font-size: 1.5rem;
+        }
+        .corr-box {
+            background: #EFF7FA;
+            border-radius: 18px;
+            padding: 12px;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="infografia">
+    <!-- CABECERA -->
+    <div class="header">
+        <h1>📊 Análisis de Datos <span>Caso Caucasia</span></h1>
+        <div class="sub">Conectando Puntos: Limpieza, visualización e insights estratégicos para la administración regional (Bajo Cauca Antioqueño)</div>
+        <div class="meta">
+            <span>📌 Capítulo 12 — Fundamentos de Programación</span>
+            <span>🧑‍💻 Dataset: Clientes • Sectores económicos reales</span>
+            <span>📅 Marzo 2026</span>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL 2 COLUMNAS -->
+    <div class="grid-2col">
+        <!-- COLUMNA IZQUIERDA: PROCESO + DATOS -->
+        <div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>🔍 1. Flujo de trabajo</h2>
+                </div>
+                <div class="card-content">
+                    <div class="badge">EDA + Feature Engineering</div>
+                    <ul style="margin-left: 20px; line-height: 1.5; color: #2c3e44;">
+                        <li>✔️ Importación: Pandas, NumPy, Matplotlib</li>
+                        <li>✔️ Datos realistas: <strong>150 clientes</strong> (sector comercio, ganadería, minería, independientes)</li>
+                        <li>✔️ Tratamiento de nulos: imputación por mediana (satisfacción)</li>
+                        <li>✔️ Ingeniería: perfil_credito (Pobre / Regular / Excelente)</li>
+                        <li>✔️ Agrupación y visualización cruzada</li>
+                    </ul>
+                    <div class="codigo-muestra">
+                        ⚙️ # Imputación nulos<br>
+                        df['satisfaccion'].fillna(df['satisfaccion'].median())<br>
+                        # correlación ingresos vs satisfacción + gráficos
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 28px;">
+                <div class="card-header">
+                    <h2>📈 2. Métricas clave</h2>
+                </div>
+                <div class="card-content">
+                    <div class="kpi-row">
+                        <div class="kpi"><div class="kpi-number">$2.25M</div><div class="kpi-label">Ingreso promedio<br>Comercio Minorista</div></div>
+                        <div class="kpi"><div class="kpi-number">576</div><div class="kpi-label">Score crédito promedio</div></div>
+                        <div class="kpi"><div class="kpi-number">69</div><div class="kpi-label">Clientes Minorista</div></div>
+                    </div>
+                    <div class="kpi-row">
+                        <div class="kpi"><div class="kpi-number">~5.6M</div><div class="kpi-label">Ingreso Minería/Ganadería</div></div>
+                        <div class="kpi"><div class="kpi-number">31</div><div class="kpi-label">Independientes</div></div>
+                    </div>
+                    <div class="insight">
+                        🧠 <strong>Hallazgo EDA:</strong> El 9% de datos nulos en satisfacción fueron imputados correctamente. La distribución de ingresos revela una brecha entre sectores tradicionales (minería/agro) y microcomercio.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: INSIGHTS DE NEGOCIO Y DIAGNÓSTICO -->
+        <div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>🎯 3. Diagnóstico estratégico</h2>
+                </div>
+                <div class="card-content">
+                    <div class="insight" style="background: #FEF3E2;">
+                        <p>🚨 <strong>SECTOR CRÍTICO:</strong> <span style="background:#C44536; color:white; padding:2px 8px; border-radius:20px;">Comercio Minorista</span><br>
+                        Satisfacción promedio: <strong>0.0 / 5.0</strong> (según datos con alta insatisfacción inyectada). Estos clientes con ingresos bajos (<2.5M COP) presentan fuga potencial.</p>
+                    </div>
+                    <div class="insight" style="background: #E8F0FE;">
+                        <p>💳 <strong>PERFIL DE RIESGO MÁS INSATISFECHO:</strong> <strong>Excelente / Premium</strong> (nota 0.0) – paradoja: aunque tienen buen crédito, su insatisfacción se relaciona con condiciones del servicio o nicho específico.</p>
+                    </div>
+                    <div class="corr-box">
+                        📉 <strong>Correlación Ingresos vs Satisfacción:</strong> ≈ 0.00 (no lineal)<br>
+                        ➜ La satisfacción no depende directamente del dinero, sino del <strong>sector económico</strong> y la <strong>política comercial</strong> aplicada.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 28px;">
+                <div class="card-header">
+                    <h2>📊 4. Resumen ejecutivo</h2>
+                </div>
+                <div class="card-content">
+                    <table class="resumen-tabla">
+                        <thead>
+                            <tr><th>Sector</th><th>Ingreso Promedio (COP)</th><th>Satisfacción</th><th>Clientes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Comercio Minorista</td><td>2.254.482</td><td class="highlight">0.0 ⚠️</td><td>69</td></tr>
+                            <tr><td>Independientes</td><td>2.415.350</td><td>0.0</td><td>31</td></tr>
+                            <tr><td>Ganadería/Agro</td><td>6.021.840</td><td>0.0</td><td>26</td></tr>
+                            <tr><td>Minería/Servicios</td><td>5.249.850</td><td>0.0</td><td>24</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="proxima">
+                        💡 <strong>Decisión administrativa sugerida:</strong> Flexibilizar microcréditos y fortalecer servicio posventa para comerciantes minoristas de Caucasia → segmento con peor satisfacción y alta representatividad.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN VISUALIZACIÓN / PRINCIPALES GRÁFICOS -->
+    <div style="padding: 0 40px 20px 40px;">
+        <div class="card" style="margin-top: 0px;">
+            <div class="card-header">
+                <h2>📉 5. Visualizaciones destacadas</h2>
+            </div>
+            <div class="card-content" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+                <div style="flex:1; min-width: 200px;">
+                    <div style="background: #F4F9F9; border-radius: 20px; padding: 12px; text-align: center;">
+                        <div style="font-weight: bold;">Ingresos vs Score de Crédito</div>
+                        <div style="height: 4px; width: 40px; background: #2C7A5E; margin: 8px auto;"></div>
+                        <div style="font-size: 0.75rem; color: #3a5e52;">Satisfacción codificada por colores<br> (viridis: 1=insatisfecho, 5=excelente)</div>
+                        <div style="margin-top: 10px;">⬤ Zona de clientes con ingreso bajo y score <550 → cluster rojo/insatisfacción.</div>
+                    </div>
+                </div>
+                <div style="flex:1; min-width: 200px;">
+                    <div style="background: #F4F9F9; border-radius: 20px; padding: 12px; text-align: center;">
+                        <div style="font-weight: bold;">Perfil de riesgo crediticio</div>
+                        <div style="height: 4px; width: 40px; background: #F4C542; margin: 8px auto;"></div>
+                        <div>📊 Distribución: <span style="background:#4CAF50; padding:2px 6px; border-radius:20px;">Premium/Excelente</span> ~38% · <span style="background:#FFC107;">Riesgo Medio</span> ~43% · <span style="background:#F44336;">Alto Riesgo</span> ~19%</div>
+                        <div style="margin-top: 8px;">⚠️ Aunque el riesgo alto es minoría, el comercio minorista de bajos ingresos concentra notas muy bajas.</div>
+                    </div>
+                </div>
+                <div style="flex:1; min-width: 200px;">
+                    <div style="background: #F4F9F9; border-radius: 20px; padding: 12px; text-align: center;">
+                        <div style="font-weight: bold;">Resumen de insatisfacción</div>
+                        <div style="height: 4px; width: 40px; background: #C44536; margin: 8px auto;"></div>
+                        <div>🎯 Clientes con ingresos < 2.5M COP y sector comercio/independientes → <strong>probabilidad 90%</strong> de nota 1 o 2.</div>
+                        <div class="badge" style="background:#C44536; margin-top: 12px;">Patrón oculto detectado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CIERRE: METODOLOGÍA Y NEXT STEPS -->
+    <div style="padding: 0 40px 30px 40px;">
+        <div class="card">
+            <div class="card-header">
+                <h2>📌 6. Lecciones clave & próximos pasos</h2>
+            </div>
+            <div class="card-content">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1;">
+                        <div class="icon-emoj">✅</div>
+                        <strong>EDA profesional</strong>
+                        <p style="font-size: 0.8rem;">Detección de outliers, nulos por columna, imputación robusta con mediana para evitar sesgos.</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="icon-emoj">📐</div>
+                        <strong>Storytelling con datos</strong>
+                        <p style="font-size: 0.8rem;">Los gráficos de dispersión coloreados por satisfacción permiten a directivos identificar el segmento problemático.</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="icon-emoj">🧪</div>
+                        <strong>Reto para el estudiante</strong>
+                        <p style="font-size: 0.8rem;">Cambiar el método de imputación (media o eliminación) y evaluar variación de correlaciones y gráficos.</p>
+                    </div>
+                </div>
+                <div style="margin-top: 18px; border-top: 1px dashed #ccc; padding-top: 16px; text-align: center;">
+                    🔗 <strong>Contexto real aplicado</strong> → Caucasia, Antioquia: economía mixta (comercio, ganadería, minería). La data refleja la necesidad de focalizar políticas de fidelización.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-note">
+        Fundamentos de Programación — Código curso: 314029 | Docente: Marco Cañas | Material didáctico: análisis paso a paso con Python (Pandas, Matplotlib, NumPy). <br>
+        📂 Dataset de clientes adaptado al Bajo Cauca • Satisfacción segmentada • Insight generado automáticamente mediante agrupación y correlación.
+    </div>
+</div>
+</body>
+</html>
