@@ -1,0 +1,56 @@
+// Mapa Conceptual Pandas vs SQL
+digraph Pandas_vs_SQL_Benchmark {
+	dpi=300 rankdir=TB size="10,12"
+	node [color="#2c3e50" fillcolor="#ffffff" fontname="Segoe UI,Arial" fontsize=11 shape=box style=filled]
+	edge [arrowhead=vee color="#7f8c8d" fontname="Segoe UI,Arial" fontsize=10]
+	inicio [label="Caso de Estudio: Contexto Caucasia
+Experimento de Rendimiento" fillcolor="#2c3e50" fontcolor=white fontsize=13 shape=ellipse style="filled,bold"]
+	p1 [label="1. Generación de Datos Sintéticos
+- clientes.csv (10k)
+- ingresos_credito.csv (10k)
+- satisfaccion_operaciones.csv (1M)" fillcolor="#f8f9fa"]
+	p2 [label="2. Consolidación en SQLite
+Inyección de Índices B-Tree
+(CREATE INDEX)" fillcolor="#f8f9fa"]
+	p3 [label="3. Objetivo del Experimento
+Buscar un cliente específico (ID: 5555)
+Cruzar Datos + Historial de 1M de filas" color="#e74c3c" fillcolor="#f8f9fa" style="filled,dashed"]
+	subgraph cluster_pandas {
+		color="#150458" label="Enfoque A: Pandas" style=dotted
+		pan_mec [label="Mecanismo:
+Carga Completa en Memoria RAM" fillcolor="#e8e6f4" fontcolor="#150458"]
+		pan_bus [label="Estrategia de Búsqueda:
+Escaneo Secuencial
+(Fila por fila en el DataFrame)" fillcolor="#e8e6f4"]
+		pan_res [label="Tiempo de Respuesta:
+0.8175 segundos
+(Riesgo de MemoryError)" fillcolor="#f1edf9" fontcolor="#150458" style="filled,bold"]
+	}
+	subgraph cluster_sql {
+		color="#00758f" label="Enfoque B: SQL (SQLite)" style=dotted
+		sql_mec [label="Mecanismo:
+Paginación en Disco Indexada" fillcolor="#e0f2f6" fontcolor="#00758f"]
+		sql_bus [label="Estrategia de Búsqueda:
+Acceso Directo
+(Consulta el mapa B-Tree del Índice)" fillcolor="#e0f2f6"]
+		sql_res [label="Tiempo de Respuesta:
+0.0046 segundos
+(Eficiencia Quirúrgica)" fillcolor="#e6f6f8" fontcolor="#00758f" style="filled,bold"]
+	}
+	conclusion [label="Veredicto Final
+SQL es 176.9x más rápido
+
+Pandas procesa todo el océano de datos en RAM;
+SQL salta directo al objetivo usando el índice." color="#2ecc71" fillcolor="#2cc71" fontcolor=white fontsize=12 shape=component style="filled,bold"]
+	inicio -> p1 [label="Inicializa con"]
+	p1 -> p2 [label="Migra a"]
+	p2 -> p3 [label="Evalúa mediante"]
+	p3 -> pan_mec [label="Ejecuta con merge()"]
+	p3 -> sql_mec [label="Ejecuta con SELECT JOIN"]
+	pan_mec -> pan_bus
+	pan_bus -> pan_res
+	sql_mec -> sql_bus
+	sql_bus -> sql_res
+	pan_res -> conclusion [style=dashed]
+	sql_res -> conclusion [style=dashed]
+}

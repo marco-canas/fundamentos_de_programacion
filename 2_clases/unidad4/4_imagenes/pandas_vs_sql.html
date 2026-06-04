@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Pandas vs SQL Benchmark</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --primary-color: #2c3e50;
+            --pandas-color: #150458;
+            --pandas-light: #e8e6f4;
+            --sql-color: #00758f;
+            --sql-light: #e0f2f6;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #7f8c8d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Encabezado Principal */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        header .location {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Pasos del Experimento */
+        .steps-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .step-card h2 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            margin-top: 5px;
+        }
+
+        /* Grilla de Datos del Paso 1 */
+        .data-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .data-badge {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .data-badge .count {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .data-badge .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Sección de Enfoques (Comparativa Visual) */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 500px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .approach-card {
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .approach-card.pandas {
+            border-top: 6px solid var(--pandas-color);
+        }
+
+        .approach-card.sql {
+            border-top: 6px solid var(--sql-color);
+        }
+
+        .approach-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .approach-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+
+        .pandas .approach-title { color: var(--pandas-color); }
+        .sql .approach-title { color: var(--sql-color); }
+
+        .badge-mechanism {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .pandas .badge-mechanism { background: var(--pandas-light); color: var(--pandas-color); }
+        .sql .badge-mechanism { background: var(--sql-light); color: var(--sql-color); }
+
+        .approach-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .approach-card ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+            font-size: 0.95rem;
+        }
+
+        .approach-card ul li::before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .pandas ul li::before { color: var(--pandas-color); }
+        .sql ul li::before { color: var(--sql-color); }
+
+        /* Tarjeta de Tiempo dentro del enfoque */
+        .time-box {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .pandas .time-box { background: var(--pandas-light); color: var(--pandas-color); }
+        .sql .time-box { background: var(--sql-light); color: var(--sql-color); }
+
+        .time-box .seconds {
+            font-size: 1.8rem;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Panel de Resultados del Fin del Benchmark */
+        .results-panel {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a252f 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .results-panel h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .results-panel .verdict {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--success-color);
+            margin: 20px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .results-panel p {
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+            color: #calc(100% - 20%);
+            opacity: 0.9;
+        }
+
+        /* Código / Query Explicativo */
+        .query-preview {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            text-align: left;
+            margin-top: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>Pandas vs SQL</h1>
+            <p>Diseño experimental de rendimiento en procesamiento de datos: Memoria RAM vs Paginación en Disco Indexada.</p>
+            <div class="location">Caso de Estudio: Contexto Caucasia</div>
+        </header>
+
+        <div class="steps-container">
+            
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h2>Generación de Datos Sintéticos (.csv)</h2>
+                <p>Se estructuran tres fuentes de datos que simulan un volumen histórico y transaccional realista para saturar búsquedas secuenciales:</p>
+                
+                <div class="data-preview">
+                    <div class="data-badge">
+                        <span class="count">10,000</span>
+                        <span class="label">Clientes Maestros<br><code>(clientes.csv)</code></span>
+                    </div>
+                    <div class="data-badge">
+                        <span class="count">10,000</span>
+                        <span class="label">Datos Financieros<br><code>(ingresos_credito.csv)</code></span>
+                    </div>
+                    <div class="data-badge">
+                        <span class="count">1,000,000</span>
+                        <span class="label">Historial de Interacciones<br><code>(satisfaccion_operaciones.csv)</code></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h2>Consolidación e Inyección de Índices en SQL</h2>
+                <p>Los archivos planos se unifican dentro de una base de datos SQLite (<code>caucasia_negocios.db</code>). Para garantizar una velocidad óptima, se aplican <strong>estructuras de índices B-Tree</strong> en las llaves de búsqueda:</p>
+                <div class="query-preview">
+CREATE INDEX idx_clientes_id ON clientes(identificador_cliente);<br>
+CREATE INDEX idx_ingresos_id ON ingresos_credito(identificador_cliente);<br>
+CREATE INDEX idx_satisfaccion_id ON satisfaccion_operaciones(identificador_cliente);
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h2>El Experimento en Clase (Objetivo)</h2>
+                <p>Buscar un cliente específico (Ej: <code>ID: 5555</code>) realizando un cruce completo (<code>JOIN</code> / <code>merge</code>) para consolidar su sector económico, ingresos y todo su historial de satisfacción.</p>
+            </div>
+
+        </div>
+
+        <div class="comparison-grid">
+            
+            <div class="approach-card pandas">
+                <div>
+                    <div class="approach-header">
+                        <span class="approach-title">Enfoque A: Pandas</span>
+                        <span class="badge-mechanism">En Memoria RAM</span>
+                    </div>
+                    <ul>
+                        <li><strong>La ilusión de la RAM:</strong> Se ve obligado a parsear y estructurar el millón de filas del disco a la memoria antes de operar.</li>
+                        <li><strong>Búsqueda Secuencial:</strong> Escanea fila por fila todo el DataFrame unificado para encontrar las coincidencias.</li>
+                        <li><strong>Riesgo latente:</strong> Si los archivos pesaran gigabytes, arrojaría inmediatamente un error de falta de memoria (<code>MemoryError</code>).</li>
+                    </ul>
+                </div>
+                <div class="time-box">
+                    Tiempo de Respuesta
+                    <span class="seconds">0.8175 s</span>
+                </div>
+            </div>
+
+            <div class="approach-card sql">
+                <div>
+                    <div class="approach-header">
+                        <span class="approach-title">Enfoque B: SQLite</span>
+                        <span class="badge-mechanism">Páginas de Disco Indexadas</span>
+                    </div>
+                    <ul>
+                        <li><strong>El Vigilante Indexado:</strong> Gracias al índice previo, el motor no lee las millones de filas; consulta un mapa ordenado (B-Tree).</li>
+                        <li><strong>Acceso Directo:</strong> Salta exactamente al bloque físico del disco donde vive el cliente 5555.</li>
+                        <li><strong>Eficiencia Quirúrgica:</strong> Extrae y monta en la RAM únicamente las filas deseadas, ignorando el resto del archivo.</li>
+                    </ul>
+                </div>
+                <div class="time-box">
+                    Tiempo de Respuesta
+                    <span class="seconds">0.0046 s</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="results-panel">
+            <h2>Resultado del Benchmark</h2>
+            <div class="verdict">¡SQL fue 176.9x más rápido!</div>
+            <p><strong>Conclusión pedagógica:</strong> Mientras Pandas intenta digerir un océano de información en la memoria RAM para responder por un solo individuo, SQL saca provecho de sus índices saltando directo al objetivo en milisegundos.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
