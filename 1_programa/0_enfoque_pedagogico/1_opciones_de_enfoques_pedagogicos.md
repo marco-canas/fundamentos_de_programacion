@@ -1,10 +1,12 @@
 # Opciones de Enfoques Pedagógicos  
 
-Para un grupo de estudiantes de matemáticas de la Universidad de Antioquia, un curso de "Fundamentos de Programación" en Python no debe enseñarse como se le enseñaría a un ingeniero de sistemas tradicional. Los matemáticos tienen una altísima tolerancia a la abstracción, una estructura mental rigurosa y un fuerte gusto por la formalidad, pero a menudo se frustran si el código se presenta como "recetas de cocina" sin una lógica subyacente o sin una aplicación directa a su área.
+Para un grupo de estudiantes de matemáticas de la Universidad de Antioquia, un curso de "Fundamentos de Programación" en Python no debe enseñarse como se le enseñaría a un ingeniero de sistemas tradicional.   
+
+Los matemáticos tienen una altísima tolerancia a la abstracción, una estructura mental rigurosa y un fuerte gusto por la formalidad, pero a menudo se frustran si el código se presenta como "recetas de cocina" sin una lógica subyacente o sin una aplicación directa a su área.
 
 Dado que el objetivo final es el **Análisis Descriptivo de Datos**, el enfoque debe conectar la teoría matemática (álgebra lineal, estadística, teoría de conjuntos) con la implementación computacional.
 
-Aquí te presento tres propuestas de enfoques pedagógicos idóneos para este perfil de estudiantes, diseñados para aprovechar su formación matemática y llevarlos de forma natural hacia el análisis de datos.
+Los siguientes son tres propuestas de enfoques pedagógicos idóneos para este perfil de estudiantes, diseñados para aprovechar su formación matemática y llevarlos de forma natural hacia el análisis de datos.
 
 ---
 
