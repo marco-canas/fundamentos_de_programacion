@@ -1,7 +1,7 @@
 
 
 2. [Cronograma clase a clase para el curso de Fundamentos de Programación](https://read.amazon.com/?asin=B0BBB56L4X&ref_=kwl_kr_iv_rec_1) 
-* El curso empieza el jueves 5 de febrero de 2026  
+* El curso empieza el jueves 56 de Agosto de 2026  
 * El horario cada semana es los Jueves de 8 a 12 de la mañana. 
 * El curso tiene 12 capítulos, y cada capítulo se cubre en una clase de cuatro horas.
 * Las otras cuatro clase se dedicaran a evaluación entre 4 parciales y 4 quices. 
