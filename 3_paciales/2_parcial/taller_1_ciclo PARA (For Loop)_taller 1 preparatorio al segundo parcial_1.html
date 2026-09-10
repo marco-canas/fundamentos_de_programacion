@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Taller de Programación: El Ciclo PARA (For Loop)</title>
+    <style>
+        /* CSS Diseñado para exportación a PDF */
+        @page {
+            size: letter;
+            margin: 2cm;
+            @bottom-right {
+                content: "Página " counter(page) " de " counter(pages);
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #2b2b2b;
+            line-height: 1.5;
+            font-size: 11pt;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Encabezado */
+        .header {
+            border-bottom: 3px solid #1a365d;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #1a365d;
+            font-size: 18pt;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+        }
+
+        .header h2 {
+            color: #4a5568;
+            font-size: 12pt;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .instructions {
+            background-color: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 12px;
+            margin-bottom: 25px;
+            font-size: 10pt;
+            page-break-inside: avoid;
+        }
+
+        .instructions h3 {
+            margin: 0 0 5px 0;
+            color: #2b6cb0;
+        }
+
+        /* Categorías y Grilla de Ejercicios */
+        .section-title {
+            background-color: #2d3748;
+            color: #ffffff;
+            padding: 6px 10px;
+            font-size: 12pt;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            page-break-after: avoid;
+        }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .exercise-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 10px 15px;
+            background-color: #ffffff;
+            page-break-inside: avoid; /* Previene que un ejercicio se corte entre páginas */
+        }
+
+        .exercise-number {
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-right: 5px;
+        }
+
+        .task-box {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #cbd5e0;
+            display: flex;
+            gap: 20px;
+            font-size: 9.5pt;
+            color: #4a5568;
+        }
+
+        .task-item {
+            flex: 1;
+            background-color: #f7fafc;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #edf2f7;
+        }
+
+        .task-item strong {
+            color: #2d3748;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #edf2f7;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 10pt;
+        }
+
+        /* Formato de Impresión */
+        @media print {
+            body {
+                background: none;
+            }
+            .exercise-card {
+                border: 1px solid #cbd5e0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Guía Práctica: El Ciclo "PARA" (For)</h1>
+        <h2>Aplicaciones en Teoría de Números y Ciencia de Datos</h2>
+    </div>
+
+    <div class="instructions">
+        <h3>Instrucciones para el estudiante:</h3>
+        <p>Para cada uno de los siguientes ejercicios, debes identificar y escribir explícitamente:</p>
+        <ol style="margin: 5px 0 0 0; padding-left: 20px;">
+            <li><strong>Límites / Iteraciones:</strong> Especifica el rango exacto del ciclo (Inicio, Fin y Paso).</li>
+            <li><strong>Bloque de código (Tarea):</strong> Escribe la lógica o fórmula matemática a ejecutar dentro de cada repetición.</li>
+        </ol>
+    </div>
+
+    <!-- BLOQUE 1: TEORÍA ELEMENTAL DE NÚMEROS -->
+    <div class="section-title">Módulo A: Teoría Elemental de Números (Ejercicios 1 - 20)</div>
+    <div class="exercise-grid">
+
+        <!-- Ejercicio 1 -->
+        <div class="exercise-card">
+            <span class="exercise-number">01.</span> Dado un número $N$, imprime todos los números pares desde $2$ hasta $N$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 2 -->
+        <div class="exercise-card">
+            <span class="exercise-number">02.</span> Calcula la suma de los primeros $N$ números naturales (1 a $N$).
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 3 -->
+        <div class="exercise-card">
+            <span class="exercise-number">03.</span> Imprime la tabla de multiplicar de un número $K$ del 1 al 12.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 4 -->
+        <div class="exercise-card">
+            <span class="exercise-number">04.</span> Dado un entero $N$, cuenta cuántos divisores exactos tiene.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 5 -->
+        <div class="exercise-card">
+            <span class="exercise-number">05.</span> Determina si un número $N$ es primo evaluando sus divisores desde $2$ hasta $\sqrt{N}$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 6 -->
+        <div class="exercise-card">
+            <span class="exercise-number">06.</span> Genera los primeros $N$ términos de la serie: $1, 4, 9, 16, 25, ...$ (cuadrados perfectos).
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 7 -->
+        <div class="exercise-card">
+            <span class="exercise-number">07.</span> Calcula el factorial de un número $N$ ($N!$).
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 8 -->
+        <div class="exercise-card">
+            <span class="exercise-number">08.</span> Suma todos los números impares dentro del rango $[A, B]$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 9 -->
+        <div class="exercise-card">
+            <span class="exercise-number">09.</span> Encuentra todos los múltiplos de $7$ comprendidos entre $1$ y $1000$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 10 -->
+        <div class="exercise-card">
+            <span class="exercise-number">10.</span> Evalúa la suma de la serie armónica hasta el $N$-ésimo término: $H_N = 1 + 1/2 + 1/3 + ... + 1/N$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 11 -->
+        <div class="exercise-card">
+            <span class="exercise-number">11.</span> Imprime los números del $N$ al $1$ en orden descendente (cuenta regresiva).
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 12 -->
+        <div class="exercise-card">
+            <span class="exercise-number">12.</span> Comprueba si un número $N$ es perfecto (la suma de sus divisores propios es igual a $N$).
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 13 -->
+        <div class="exercise-card">
+            <span class="exercise-number">13.</span> Imprime todos los números primos comprendidos entre $2$ y $100$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 14 -->
+        <div class="exercise-card">
+            <span class="exercise-number">14.</span> Calcula el valor de $a^b$ (potencia) mediante multiplicaciones sucesivas.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 15 -->
+        <div class="exercise-card">
+            <span class="exercise-number">15.</span> Imprime los múltiplos comunes de $3$ y $5$ menores que $N$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 16 -->
+        <div class="exercise-card">
+            <span class="exercise-number">16.</span> Genera la suma de los cubos de los primeros $N$ números enteros: $1^3 + 2^3 + ... + N^3$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 17 -->
+        <div class="exercise-card">
+            <span class="exercise-number">17.</span> Cuenta cuántos enteros entre $1$ y $N$ dejan un residuo de $3$ al ser divididos por $7$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 18 -->
+        <div class="exercise-card">
+            <span class="exercise-number">18.</span> Imprime los primeros $N$ términos de la sucesión alternante: $1, -2, 3, -4, 5, -6...$
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 19 -->
+        <div class="exercise-card">
+            <span class="exercise-number">19.</span> Calcula el producto de todos los números impares desde $1$ hasta $15$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 20 -->
+        <div class="exercise-card">
+            <span class="exercise-number">20.</span> Aplica la criba para contar cuántos números no son divisibles ni por $2$ ni por $3$ entre $1$ y $N$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BLOQUE 2: CIENCIA DE DATOS Y ESTADÍSTICA -->
+    <div class="section-title">Módulo B: Ciencia de Datos e Introducción a la Estadística (Ejercicios 21 - 40)</div>
+    <div class="exercise-grid">
+
+        <!-- Ejercicio 21 -->
+        <div class="exercise-card">
+            <span class="exercise-number">21.</span> Dada una lista de datos de tamaño $N$, calcula la suma acumulada para obtener la media aritmética.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 22 -->
+        <div class="exercise-card">
+            <span class="exercise-number">22.</span> Encuentra el valor máximo dentro de un arreglo/vector de tamaño $N$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 23 -->
+        <div class="exercise-card">
+            <span class="exercise-number">23.</span> Cuenta cuántos registros en un Dataset de temperatura superan el umbral crítico de $30^\circ\text{C}$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 24 -->
+        <div class="exercise-card">
+            <span class="exercise-number">24.</span> Transforma una lista de temperaturas expresadas en Celsius a Fahrenheit.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 25 -->
+        <div class="exercise-card">
+            <span class="exercise-number">25.</span> Imputación de datos: Reemplaza todos los valores negativos de una lista por cero.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 26 -->
+        <div class="exercise-card">
+            <span class="exercise-number">26.</span> Dado el valor promedio $\mu$, calcula la suma de diferencias cuadradas $(x_i - \mu)^2$ para hallar la varianza.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 27 -->
+        <div class="exercise-card">
+            <span class="exercise-number">27.</span> Normalización Min-Max: Escala cada elemento $x_i$ usando la fórmula $\frac{x_i - min}{max - min}$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 28 -->
+        <div class="exercise-card">
+            <span class="exercise-number">28.</span> Filtra un dataset contando cuántos valores nulos (`NaN` o `-999`) existen en una columna.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 29 -->
+        <div class="exercise-card">
+            <span class="exercise-number">29.</span> Calcula el producto punto entre dos vectores $A$ y $B$ de igual dimensión $N$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 30 -->
+        <div class="exercise-card">
+            <span class="exercise-number">30.</span> Calcula el Error Cuadrático Medio (MSE) entre un vector de predicciones $\hat{Y}$ y valores reales $Y$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 31 -->
+        <div class="exercise-card">
+            <span class="exercise-number">31.</span> Binarización de características: Convierte datos continuos a $1$ si $x_i \ge \text{umbral}$, o $0$ en caso contrario.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 32 -->
+        <div class="exercise-card">
+            <span class="exercise-number">32.</span> Cuenta la frecuencia de una clase específica (ej. "Cliente Churn = 1") en una lista de predicciones.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 33 -->
+        <div class="exercise-card">
+            <span class="exercise-number">33.</span> Aplica una tasa de descuento del $15\%$ a cada elemento de un arreglo de precios de productos.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 34 -->
+        <div class="exercise-card">
+            <span class="exercise-number">34.</span> Calcula el Error Absoluto Medio (MAE) sumando $|y_i - \hat{y}_i|$ para $N$ muestras.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 35 -->
+        <div class="exercise-card">
+            <span class="exercise-number">35.</span> Genera una media móvil simple de ventana $k=3$ para una serie temporal.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 36 -->
+        <div class="exercise-card">
+            <span class="exercise-number">36.</span> Calcula la norma euclidiana (longitud) de un vector sumando sus elementos al cuadrado.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 37 -->
+        <div class="exercise-card">
+            <span class="exercise-number">37.</span> Detecta *Outliers*: Cuenta cuántos puntos están a más de $3$ desviaciones estándar de la media.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 38 -->
+        <div class="exercise-card">
+            <span class="exercise-number">38.</span> Realiza la suma de dos vectores elemento por elemento: $C[i] = A[i] + B[i]$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 39 -->
+        <div class="exercise-card">
+            <span class="exercise-number">39.</span> Calcula la covarianza entre dos variables $X$ e $Y$ iterando la suma $(x_i - \bar{x})(y_i - \bar{y})$.
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 40 -->
+        <div class="exercise-card">
+            <span class="exercise-number">40.</span> Aplica una función de activación ReLu a un vector de entrada ($max(0, x_i)$).
+            <div class="task-box">
+                <div class="task-item"><strong>1. Iteraciones:</strong> Desde ____ hasta ____ con paso ____</div>
+                <div class="task-item"><strong>2. Tarea por iteración:</strong> _____________________________</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

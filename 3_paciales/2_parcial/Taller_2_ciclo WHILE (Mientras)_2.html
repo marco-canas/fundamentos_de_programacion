@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Taller de Programación: El Ciclo WHILE (Mientras)</title>
+    <style>
+        /* Configuración de Hoja para Impresión/PDF */
+        @page {
+            size: letter;
+            margin: 15mm 15mm;
+            background-color: #fcfcfd;
+            @bottom-right {
+                content: "Página " counter(page) " de " counter(pages);
+                font-family: 'Segoe UI', Arial, sans-serif;
+                font-size: 8pt;
+                color: #718096;
+            }
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #2d3748;
+            line-height: 1.4;
+            font-size: 9.5pt;
+            margin: 0;
+            padding: 0;
+            background-color: #fcfcfd;
+        }
+
+        /* Encabezado Principal */
+        .header {
+            background-color: #1a365d;
+            color: #ffffff;
+            border-radius: 6px;
+            margin: -15mm -15mm 15px -15mm;
+            padding: 20px 20px 16px 20px;
+        }
+
+        .header h1 {
+            font-size: 16pt;
+            margin: 0 0 4px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+
+        .header h2 {
+            font-size: 10.5pt;
+            margin: 0;
+            font-weight: 400;
+            color: #e2e8f0;
+        }
+
+        /* Bloque de Instrucciones */
+        .instructions {
+            background-color: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            border-radius: 4px;
+            padding: 10px 14px;
+            margin-bottom: 15px;
+            page-break-inside: avoid;
+        }
+
+        .instructions h3 {
+            margin: 0 0 4px 0;
+            color: #2b6cb0;
+            font-size: 10.5pt;
+        }
+
+        .instructions ol {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .instructions li {
+            margin-bottom: 2px;
+            color: #2d3748;
+        }
+
+        /* Título de Sección */
+        .section-title {
+            background-color: #2b6cb0;
+            color: #ffffff;
+            padding: 6px 12px;
+            font-size: 11pt;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+            page-break-after: avoid;
+        }
+
+        /* Tarjeta de Ejercicio */
+        .exercise-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+            page-break-inside: avoid; /* Previene cortes arbitrarios entre páginas */
+        }
+
+        .exercise-title {
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 6px;
+        }
+
+        .exercise-number {
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-right: 4px;
+        }
+
+        /* Cajas de Respuesta */
+        .task-box {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+            border-spacing: 8px 0;
+            margin-top: 4px;
+        }
+
+        .task-item {
+            display: table-cell;
+            width: 50%;
+            background-color: #f7fafc;
+            padding: 6px 8px;
+            border-radius: 4px;
+            border: 1px solid #edf2f7;
+            vertical-align: top;
+            font-size: 8.5pt;
+        }
+
+        .task-item strong {
+            color: #2d3748;
+            display: inline-block;
+            margin-bottom: 2px;
+        }
+
+        .fill-line {
+            color: #a0aec0;
+            font-family: monospace;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #edf2f7;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-size: 9pt;
+            color: #2c5282;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Guía Práctica: El Ciclo "MIENTRAS" (While)</h1>
+        <h2>Condiciones Booleanas y Bloques de Control en Teoría de Números y Ciencia de Datos</h2>
+    </div>
+
+    <div class="instructions">
+        <h3>Instrucciones para el estudiante:</h3>
+        <p style="margin:0 0 4px 0;">El ciclo <code>while</code> ejecuta sus instrucciones repetidamente <em>mientras</em> una condición sea verdadera. Para cada uno de los 40 ejercicios:</p>
+        <ol>
+            <li><strong>Condición Booleana de Parada/Continuación:</strong> Expresa formalmente la condición lógica que evalúa el ciclo en cada paso.</li>
+            <li><strong>Bloque de Tarea e Incremento/Cambio de Estado:</strong> Define las operaciones internas y la actualización de variables que garantiza la convergencia del ciclo.</li>
+        </ol>
+    </div>
+
+    <!-- MÓDULO A -->
+    <div class="section-title">Módulo A: Teoría Elemental de Números (Ejercicios 1 - 20)</div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">01.</span> Algoritmo de Euclides: Dado dos enteros $a$ y $b$, calcula su Máximo Común Divisor (MCD) reduciendo $(a, b) \rightarrow (b, a \pmod b)$ hasta que $b$ sea cero.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">02.</span> Descomposición en Dígitos: Dado un número entero positivo $N$, extrae y muestra sus dígitos uno a uno desde las unidades dividiendo sucesivamente por 10.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">03.</span> Inversión de un Número: Dado un entero $N$, construye su número invertido (ej. $123 \rightarrow 321$) acumulando el residuo de la división por 10.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">04.</span> Conjetura de Collatz: Dado $N$, si es par divídelo entre 2; si es impar multiplícalo por 3 y súmale 1. Detén el ciclo al alcanzar el número 1.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">05.</span> Factorización de Primos: Imprime todos los factores primos de un número $N$ probando divisores $d$ comenzando en 2.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">06.</span> Suma de Dígitos: Suma todos los dígitos individuales de un número entero entero positivo $N$ hasta reducir $N$ a cero.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">07.</span> Menor Múltiplo Común Mayor a K: Encuentra la menor potencia de 2 que sea strictly mayor que un valor límite $K$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">08.</span> Raíz Cuadrada Entera: Dado $N$, halla la mayor parte entera $r$ tal que $r^2 \le N$ incrementando $r$ de uno en uno.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">09.</span> Prueba de Primabilidad Temprana: Verifica si $N$ es primo probando divisores $d=2, 3, \dots$ interrumpiendo el ciclo si se halla un divisor o si $d^2 > N$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">10.</span> Conversión de Decimal a Binario: Construye la representación binaria de un número entero positivo $N$ obteniendo sus residuos mod 2 y dividiendo $N // 2$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">11.</span> Secuencia de Fibonacci hasta un Límite: Imprime los números de Fibonacci mientras el término actual sea menor o igual a un valor máximo $M$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">12.</span> Raíz Digital de un Número: Suma repetidamente los dígitos de $N$ hasta que el resultado sea un único número de un solo dígito (menor que 10).</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">13.</span> Mínimo Común Múltiplo (MCM): Determina el MCM de dos números $a$ y $b$ incrementando un candidato $m$ (comenzando en $\max(a,b)$) hasta que sea divisible por ambos.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">14.</span> Verificación de Número Poderoso: Comprueba si un número $N$ es una potencia de 3 dividiéndolo sucesivamente entre 3 mientras sea divisible exactamente.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">15.</span> Búsqueda del Primer Primo Mayor que K: Dado $K$, incrementa $p = K + 1$ paso a paso hasta encontrar el primer número que sea primo.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">16.</span> Número de Repetidos de División: Determina cuántas veces se puede dividir $N$ entre un entero $k$ de manera exacta antes de obtener un residuo.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">17.</span> Generación de Números Capicúas: Dado un número $N$, súmale su inverso repetidamente hasta que la suma resultante sea un número palíndromo (capicúa).</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">18.</span> Algoritmo de Substracciones de Euclides: Calcula el MCD de dos enteros positivos $a$ y $b$ restando el menor del mayor repetidamente mientras $a \neq b$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">19.</span> Búsqueda de Factorial Superior: Encuentra el menor número entero $n$ tal que su factorial $n!$ sea mayor o igual a un umbral dado $U$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">20.</span> Serie Harmónica Acotada: Determina cuántos términos $n$ de la serie $1 + 1/2 + 1/3 + \dots + 1/n$ se deben sumar para superar un valor meta $S$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <!-- MÓDULO B -->
+    <div class="section-title">Módulo B: Ciencia de Datos y Algoritmos Iterativos (Ejercicios 21 - 40)</div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">21.</span> Convergencia de Gradiente Descendente: Actualiza el parámetro $\theta \leftarrow \theta - \alpha \cdot g$ en un modelo mientras el módulo del gradiente $|g|$ sea mayor a una tolerancia $\epsilon$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">22.</span> Búsqueda Binaria de Un Umbral: Reduce el intervalo de búsqueda $[L, R]$ recalculando el punto medio $M$ mientras la diferencia $(R - L)$ sea mayor a $10^{-6}$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">23.</span> Método de Newton-Raphson para Raíz Cuadrada: Aproxima $\sqrt{S}$ actualizando $x \leftarrow \frac{1}{2}(x + S/x)$ mientras el error $|x^2 - S| > \epsilon$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">24.</span> Reagrupamiento en K-Means: Repite la reasignación de puntos a centroides mientras el cambio total en la posición de los centroides supere un delta mínimo.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">25.</span> Ingesta de Datos por Batches (Streaming): Procesa paquetes de datos de tamaño $B$ desde una fuente continua mientras queden registros en la cola.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">26.</span> Parada Temprana (Early Stopping): Entrena épocas de una red neuronal mientras el error de validación no se haya incrementado durante $P$ épocas consecutivas (patience).</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">27.</span> Limpieza de Outliers Iterativa: Elimina filas cuyo $Z$-score sea $> 3$ mientras la cantidad de registros eliminados en la iteración actual sea mayor a cero.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">28.</span> Acumulación de Muestras Monte Carlo: Genera puntos aleatorios $(x,y)$ para estimar $\pi$ hasta que el error estándar estimado sea menor a $0.001$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">29.</span> Búsqueda Exhaustiva de Hiperparámetros: Prueba combinaciones de parámetros mientras el score $R^2$ de validación no alcance la meta mínima requerida $0.95$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">30.</span> Filtrado de Texto (Tokenización): Extrae palabras de un documento largo mediante un cursor de texto mientras no se alcance la marca de fin de archivo (`EOF`).</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">31.</span> Crecimiento de Muestra Adaptativo: Aumenta el tamaño de la muestra $N \leftarrow N + 50$ mientras la varianza muestral calculada sea superior a una tolerancia fija.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">32.</span> Algoritmo PageRank Iterativo: Actualiza el vector de probabilidades de páginas web mientras la diferencia entre dos iteraciones sucesivas $\|\mathbf{r}_{t+1} - \mathbf{r}_t\|_1 > \epsilon$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">33.</span> Control de Memoria en DataFrames: Procesa y libera lotes de datos de memoria mientras el consumo de RAM supere el $80\%$ de la capacidad disponible.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">34.</span> Imputación EM (Expectation-Maximization): Actualiza las estimaciones de parámetros en datos faltantes mientras la log-verosimilitud continúe aumentando.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">35.</span> Simulación de Filas de Espera (M/M/1): Avanza el reloj de simulación $t \leftarrow t + \Delta t$ mientras el tiempo total sea menor al horizonte planificado $T_{max}$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">36.</span> Búsqueda Local en Selección de Features: Agrega variables explicativas al modelo de regresión mientras el criterio AIC del modelo siga mejorando (disminuyendo).</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">37.</span> Suavizado Exponencial de Series de Tiempo: Recorre las observaciones de una serie de tiempo $y_t$ mediante un puntero mientras existan datos no procesados.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">38.</span> Reducción de Dimensionalidad por Varianza: Remueve las características con menor varianza mientras la varianza total explicada retenida sea superior al $90\%$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">39.</span> Mapeo de Densidad DBSCAN: Expande la región de un cluster agregando vecinos directos mientras la lista de puntos frontera alcanzables no esté vacía.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="exercise-title"><span class="exercise-number">40.</span> Balanceo de Clases por Sobremuestreo (SMOTE): Genera muestras sintéticas para la clase minoritaria mientras su proporción respecto a la mayoritaria sea inferior al $1.0$.</div>
+        <div class="task-box">
+            <div class="task-item"><strong>1. Condición Mientras (Booleana):</strong><br><span class="fill-line">while ( ________________________ ):</span></div>
+            <div class="task-item"><strong>2. Tarea e Incremento/Estado:</strong><br><span class="fill-line">________________________________</span></div>
+        </div>
+    </div>
+
+</body>
+</html>
