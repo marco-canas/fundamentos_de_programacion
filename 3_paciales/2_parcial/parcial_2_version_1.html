@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Parcial Python - Ciencia de Datos</title>
+<style>
+  /* ============ CONFIGURACIÓN GENERAL ============ */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: #e9edf2;
+    color: #1f2a37;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ============ PÁGINA A4 ============ */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 10mm auto;
+    background: #ffffff;
+    padding: 12mm 14mm;
+    position: relative;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    page-break-after: always;
+    overflow: hidden;
+  }
+
+  .page:last-child {
+    page-break-after: auto;
+  }
+
+  /* ============ ENCABEZADO ============ */
+  .header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #0ea5e9 100%);
+    color: #ffffff;
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+  }
+
+  .header h1 span {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 0.9;
+    margin-top: 4px;
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 8px 14px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* ============ BARRA DE INSTRUCCIONES ============ */
+  .instrucciones {
+    background: #f1f5f9;
+    border-left: 5px solid #2563eb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    line-height: 1.55;
+    margin-bottom: 16px;
+    color: #334155;
+  }
+
+  .instrucciones strong {
+    color: #1e3a8a;
+  }
+
+  .instrucciones ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 18px;
+    margin-top: 6px;
+  }
+
+  .instrucciones li::before {
+    content: "▸ ";
+    color: #2563eb;
+    font-weight: bold;
+  }
+
+  /* ============ SECCIONES ============ */
+  .seccion {
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+
+  .seccion-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #1e293b;
+    color: #fff;
+    padding: 7px 14px;
+    border-radius: 8px 8px 0 0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .seccion-titulo .num {
+    background: #0ea5e9;
+    color: #001322;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  /* ============ TARJETAS DE PREGUNTAS ============ */
+  .preguntas {
+    border: 1px solid #e2e8f0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 10px 14px;
+    background: #fafbfc;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+  }
+
+  .pregunta {
+    display: flex;
+    gap: 8px;
+    font-size: 11.5px;
+    line-height: 1.45;
+    color: #1f2a37;
+    page-break-inside: avoid;
+  }
+
+  .pregunta .n {
+    flex-shrink: 0;
+    background: #dbeafe;
+    color: #1e3a8a;
+    font-weight: 700;
+    font-size: 11px;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pregunta code {
+    background: #eef2f7;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 10.5px;
+    color: #b91c1c;
+  }
+
+  /* Ancho completo para preguntas largas */
+  .pregunta.full {
+    grid-column: 1 / -1;
+  }
+
+  /* ============ PIE DE PÁGINA ============ */
+  .footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 14mm;
+    right: 14mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #64748b;
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 6px;
+  }
+
+  /* ============ PÁGINA 2: RÚBRICA Y SOLUCIONES ============ */
+  .rubrica {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+    margin-top: 6px;
+  }
+
+  .rubrica th {
+    background: #1e3a8a;
+    color: #fff;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .rubrica td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #fafbfc;
+  }
+
+  .rubrica tr:nth-child(even) td {
+    background: #f1f5f9;
+  }
+
+  .rubrica .pts {
+    font-weight: 700;
+    color: #0ea5e9;
+    text-align: center;
+    width: 80px;
+  }
+
+  .soluciones-titulo {
+    background: #065f46;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 14px 0 8px;
+  }
+
+  .codigo-bloque {
+    background: #0f172a;
+    color: #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 10px;
+    line-height: 1.5;
+    white-space: pre;
+    overflow-x: auto;
+    column-count: 2;
+    column-gap: 20px;
+    column-rule: 1px dashed #334155;
+  }
+
+  .codigo-bloque .kw { color: #f472b6; }
+  .codigo-bloque .fn { color: #60a5fa; }
+  .codigo-bloque .st { color: #fbbf24; }
+  .codigo-bloque .cm { color: #64748b; font-style: italic; }
+
+  /* ============ ETIQUETAS DECORATIVAS ============ */
+  .tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #0ea5e9;
+    color: #001322;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 0 14px 0 10px;
+    text-transform: uppercase;
+  }
+
+  /* ============ RESPONSIVE (solo pantalla) ============ */
+  @media screen and (max-width: 800px) {
+    .page { width: 100%; padding: 20px; }
+    .preguntas { grid-template-columns: 1fr; }
+    .codigo-bloque { column-count: 1; }
+    .instrucciones ul { grid-template-columns: 1fr; }
+  }
+
+  /* ============ IMPRESIÓN ============ */
+  @media print {
+    body { background: #fff; }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      width: 210mm;
+      min-height: 297mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PÁGINA 1: ENUNCIADO DEL PARCIAL                              -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="tag">Evaluación</div>
+
+  <header class="header">
+    <h1>
+      Parcial de Python
+      <span>Condicionales · Ciclos · Funciones — Orientado a Ciencia de Datos</span>
+    </h1>
+    <div class="badge">
+      ⏱ 90 min<br>
+      📄 20 preguntas<br>
+      🎯 10 puntos
+    </div>
+  </header>
+
+  <div class="instrucciones">
+    <strong>Instrucciones generales</strong>
+    <ul>
+      <li>Modalidad individual, en computador</li>
+      <li><b>Sin conexión a internet</b></li>
+      <li>Solo Python estándar (sin numpy/pandas)</li>
+      <li>Cada pregunta vale <b>0.5 pts</b></li>
+      <li>Guarde cada respuesta en un archivo <code>.py</code></li>
+      <li>Se evalúa lógica, sintaxis y casos borde</li>
+    </ul>
+  </div>
+
+  <!-- SECCIÓN I -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">I</span> Condicionales · Preguntas 1 – 5
+    </div>
+    <div class="preguntas">
+      <div class="pregunta"><span class="n">1</span><div>Cree <code>clasificar_imc(peso, altura)</code> que retorne <em>"Bajo peso"</em>, <em>"Normal"</em>, <em>"Sobrepeso"</em> u <em>"Obesidad"</em> según el IMC.</div></div>
+      <div class="pregunta"><span class="n">2</span><div>Con <code>valores = [12,-3,0,45,-7,8]</code>, imprima si hay negativos usando un condicional (sin <code>any()</code>).</div></div>
+      <div class="pregunta"><span class="n">3</span><div>Cree <code>es_outlier(x, media, desv)</code> que retorne <code>True</code> si <code>|x-media| &gt; 2·desv</code>.</div></div>
+      <div class="pregunta"><span class="n">4</span><div>Recorra <code>ventas = {"enero":100,"febrero":0,"marzo":250}</code> e indique qué meses no tuvieron ventas.</div></div>
+      <div class="pregunta full"><span class="n">5</span><div>Cree <code>tipo_dato(valor)</code> que retorne <em>"numérico"</em>, <em>"texto"</em>, <em>"booleano"</em> u <em>"otro"</em>.</div></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN II -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">II</span> Ciclos <code style="color:#0ea5e9">for</code> · Preguntas 6 – 10
+    </div>
+    <div class="preguntas">
+      <div class="pregunta"><span class="n">6</span><div>Calcule el promedio de <code>edades = [23,45,12,67,34,19]</code> con un <code>for</code>.</div></div>
+      <div class="pregunta"><span class="n">7</span><div>Genere una lista con el cuadrado de <code>[2,4,6,8,10]</code> usando <code>for</code>.</div></div>
+      <div class="pregunta"><span class="n">8</span><div>Encuentre la temperatura máxima de <code>temps = [22.5,23.1,21.8,24.0,25.3]</code> sin usar <code>max()</code>.</div></div>
+      <div class="pregunta"><span class="n">9</span><div>Cuente las vocales de <code>"ciencia de datos"</code> con un <code>for</code>.</div></div>
+      <div class="pregunta full"><span class="n">10</span><div>Con <code>matriz = [[1,2,3],[4,5,6],[7,8,9]]</code>, use <code>for</code> anidados para imprimir la suma de cada fila.</div></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN III -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">III</span> Ciclos <code style="color:#0ea5e9">while</code> · Preguntas 11 – 15
+    </div>
+    <div class="preguntas">
+      <div class="pregunta"><span class="n">11</span><div>Imprima del 1 al 10 con un <code>while</code>.</div></div>
+      <div class="pregunta"><span class="n">12</span><div>Sume los primeros 100 naturales con <code>while</code>.</div></div>
+      <div class="pregunta"><span class="n">13</span><div>Conjetura de Collatz desde <code>n=27</code>: cuente iteraciones hasta llegar a 1.</div></div>
+      <div class="pregunta"><span class="n">14</span><div>Simule energía inicial 100 que baja entre 5 y 15 (aleatorio) hasta ≤ 0. Cuente pasos.</div></div>
+      <div class="pregunta full"><span class="n">15</span><div>Recorra <code>[3,5,7,0,2,8]</code> con <code>while</code> e imprima hasta encontrar un 0 (sin imprimirlo).</div></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN IV -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">IV</span> Funciones de usuario · Preguntas 16 – 20
+    </div>
+    <div class="preguntas">
+      <div class="pregunta"><span class="n">16</span><div><code>media(lista)</code>: promedio; retorne <code>None</code> si está vacía.</div></div>
+      <div class="pregunta"><span class="n">17</span><div><code>normalizar(lista)</code>: retorne <code>(x-min)/(max-min)</code>. Maneje <code>max==min</code>.</div></div>
+      <div class="pregunta"><span class="n">18</span><div><code>contar_frecuencias(lista)</code>: retorne diccionario de frecuencias.</div></div>
+      <div class="pregunta"><span class="n">19</span><div><code>filtrar_por_umbral(lista, umbral)</code>: retorne solo valores &gt; umbral.</div></div>
+      <div class="pregunta full"><span class="n">20</span><div><code>resumen_estadistico(lista)</code>: retorne <code>{"min","max","media","n"}</code>.</div></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>Parcial de Python · Ciencia de Datos</span>
+    <span>Página 1 de 2</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PÁGINA 2: RÚBRICA Y SOLUCIONES                               -->
+<!-- ============================================================ -->
+<div class="page">
+  <header class="header">
+    <h1>
+      Rúbrica y Soluciones
+      <span>Documento para el docente</span>
+    </h1>
+    <div class="badge">🔒 Uso interno</div>
+  </header>
+
+  <!-- RÚBRICA -->
+  <section class="seccion">
+    <div class="seccion-titulo"><span class="num">✓</span> Rúbrica de evaluación por pregunta</div>
+    <table class="rubrica">
+      <thead>
+        <tr>
+          <th>Criterio</th>
+          <th class="pts">Puntos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Sintaxis correcta y uso adecuado de estructuras</td><td class="pts">0.2</td></tr>
+        <tr><td>Lógica correcta del algoritmo</td><td class="pts">0.2</td></tr>
+        <tr><td>Manejo de casos borde (listas vacías, división por cero, etc.)</td><td class="pts">0.1</td></tr>
+        <tr><td><b>Total por pregunta</b></td><td class="pts"><b>0.5</b></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SOLUCIONES -->
+  <div class="soluciones-titulo">💡 Soluciones breves (referencia)</div>
+
+  <div class="codigo-bloque">
+<span class="cm"># 1</span>
+<span class="kw">def</span> <span class="fn">clasificar_imc</span>(peso, altura):
+    imc = peso / altura**<span class="st">2</span>
+    <span class="kw">if</span> imc &lt; <span class="st">18.5</span>: <span class="kw">return</span> <span class="st">"Bajo peso"</span>
+    <span class="kw">elif</span> imc &lt; <span class="st">25</span>: <span class="kw">return</span> <span class="st">"Normal"</span>
+    <span class="kw">elif</span> imc &lt; <span class="st">30</span>: <span class="kw">return</span> <span class="st">"Sobrepeso"</span>
+    <span class="kw">else</span>: <span class="kw">return</span> <span class="st">"Obesidad"</span>
+
+<span class="cm"># 3</span>
+<span class="kw">def</span> <span class="fn">es_outlier</span>(x, media, desv):
+    <span class="kw">return</span> <span class="fn">abs</span>(x - media) &gt; <span class="st">2</span> * desv
+
+<span class="cm"># 5</span>
+<span class="kw">def</span> <span class="fn">tipo_dato</span>(valor):
+    <span class="kw">if</span> <span class="fn">isinstance</span>(valor, <span class="fn">bool</span>): <span class="kw">return</span> <span class="st">"booleano"</span>
+    <span class="kw">if</span> <span class="fn">isinstance</span>(valor, (<span class="fn">int</span>, <span class="fn">float</span>)): <span class="kw">return</span> <span class="st">"numérico"</span>
+    <span class="kw">if</span> <span class="fn">isinstance</span>(valor, <span class="fn">str</span>): <span class="kw">return</span> <span class="st">"texto"</span>
+    <span class="kw">return</span> <span class="st">"otro"</span>
+
+<span class="cm"># 6</span>
+edades = [<span class="st">23</span>,<span class="st">45</span>,<span class="st">12</span>,<span class="st">67</span>,<span class="st">34</span>,<span class="st">19</span>]
+s = <span class="st">0</span>
+<span class="kw">for</span> e <span class="kw">in</span> edades: s += e
+<span class="fn">print</span>(s / <span class="fn">len</span>(edades))
+
+<span class="cm"># 8</span>
+temps = [<span class="st">22.5</span>,<span class="st">23.1</span>,<span class="st">21.8</span>,<span class="st">24.0</span>,<span class="st">25.3</span>]
+mx = temps[<span class="st">0</span>]
+<span class="kw">for</span> t <span class="kw">in</span> temps:
+    <span class="kw">if</span> t &gt; mx: mx = t
+<span class="fn">print</span>(mx)
+
+<span class="cm"># 10</span>
+matriz = [[<span class="st">1</span>,<span class="st">2</span>,<span class="st">3</span>],[<span class="st">4</span>,<span class="st">5</span>,<span class="st">6</span>],[<span class="st">7</span>,<span class="st">8</span>,<span class="st">9</span>]]
+<span class="kw">for</span> fila <span class="kw">in</span> matriz:
+    s = <span class="st">0</span>
+    <span class="kw">for</span> x <span class="kw">in</span> fila: s += x
+    <span class="fn">print</span>(s)
+
+<span class="cm"># 11</span>
+i = <span class="st">1</span>
+<span class="kw">while</span> i &lt;= <span class="st">10</span>:
+    <span class="fn">print</span>(i); i += <span class="st">1</span>
+
+<span class="cm"># 13</span>
+n, pasos = <span class="st">27</span>, <span class="st">0</span>
+<span class="kw">while</span> n != <span class="st">1</span>:
+    n = n // <span class="st">2</span> <span class="kw">if</span> n % <span class="st">2</span> == <span class="st">0</span> <span class="kw">else</span> <span class="st">3</span> * n + <span class="st">1</span>
+    pasos += <span class="st">1</span>
+<span class="fn">print</span>(pasos)
+
+<span class="cm"># 15</span>
+datos = [<span class="st">3</span>,<span class="st">5</span>,<span class="st">7</span>,<span class="st">0</span>,<span class="st">2</span>,<span class="st">8</span>]
+i = <span class="st">0</span>
+<span class="kw">while</span> i &lt; <span class="fn">len</span>(datos) <span class="kw">and</span> datos[i] != <span class="st">0</span>:
+    <span class="fn">print</span>(datos[i]); i += <span class="st">1</span>
+
+<span class="cm"># 16</span>
+<span class="kw">def</span> <span class="fn">media</span>(lista):
+    <span class="kw">if</span> <span class="kw">not</span> lista: <span class="kw">return</span> <span class="st">None</span>
+    <span class="kw">return</span> <span class="fn">sum</span>(lista) / <span class="fn">len</span>(lista)
+
+<span class="cm"># 17</span>
+<span class="kw">def</span> <span class="fn">normalizar</span>(lista):
+    <span class="kw">if</span> <span class="kw">not</span> lista: <span class="kw">return</span> []
+    mn, mx = <span class="fn">min</span>(lista), <span class="fn">max</span>(lista)
+    <span class="kw">if</span> mx == mn: <span class="kw">return</span> [<span class="st">0.0</span>] * <span class="fn">len</span>(lista)
+    <span class="kw">return</span> [(x - mn) / (mx - mn) <span class="kw">for</span> x <span class="kw">in</span> lista]
+
+<span class="cm"># 18</span>
+<span class="kw">def</span> <span class="fn">contar_frecuencias</span>(lista):
+    f = {}
+    <span class="kw">for</span> x <span class="kw">in</span> lista:
+        f[x] = f.<span class="fn">get</span>(x, <span class="st">0</span>) + <span class="st">1</span>
+    <span class="kw">return</span> f
+
+<span class="cm"># 19</span>
+<span class="kw">def</span> <span class="fn">filtrar_por_umbral</span>(lista, umbral):
+    <span class="kw">return</span> [x <span class="kw">for</span> x <span class="kw">in</span> lista <span class="kw">if</span> x &gt; umbral]
+
+<span class="cm"># 20</span>
+<span class="kw">def</span> <span class="fn">resumen_estadistico</span>(lista):
+    <span class="kw">if</span> <span class="kw">not</span> lista:
+        <span class="kw">return</span> {<span class="st">"min"</span>:<span class="st">None</span>,<span class="st">"max"</span>:<span class="st">None</span>,<span class="st">"media"</span>:<span class="st">None</span>,<span class="st">"n"</span>:<span class="st">0</span>}
+    <span class="kw">return</span> {
+        <span class="st">"min"</span>: <span class="fn">min</span>(lista),
+        <span class="st">"max"</span>: <span class="fn">max</span>(lista),
+        <span class="st">"media"</span>: <span class="fn">sum</span>(lista) / <span class="fn">len</span>(lista),
+        <span class="st">"n"</span>: <span class="fn">len</span>(lista)
+    }
+  </div>
+
+  <div class="footer">
+    <span>Parcial de Python · Ciencia de Datos</span>
+    <span>Página 2 de 2</span>
+  </div>
+</div>
+
+</body>
+</html>

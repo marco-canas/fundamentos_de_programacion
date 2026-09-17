@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Parcial Python v4 - Ciencia de Datos</title>
+<style>
+  @page { size: A4; margin: 0; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ============ PÁGINA A4 ============ */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 10mm auto;
+    background:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px) 0 0 / 100% 24px,
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px) 0 0 / 24px 100%,
+      #0f1520;
+    padding: 12mm 14mm;
+    position: relative;
+    box-shadow: 0 10px 34px rgba(0,0,0,0.55);
+    page-break-after: always;
+    overflow: hidden;
+    border: 1px solid #1f2a3a;
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  /* ============ HEADER ============ */
+  .header {
+    background: linear-gradient(135deg, #0b1220 0%, #14213d 55%, #b45309 140%);
+    border: 1px solid #f59e0b;
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 90% 20%, rgba(245,158,11,0.35) 0%, transparent 55%),
+      radial-gradient(circle at 10% 80%, rgba(56,189,248,0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: 0.4px;
+    color: #fef3c7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header h1 span {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: #fcd34d;
+    margin-top: 5px;
+    letter-spacing: 0.3px;
+  }
+
+  .badge {
+    background: rgba(245,158,11,0.15);
+    border: 1px solid #f59e0b;
+    color: #fcd34d;
+    padding: 8px 14px;
+    border-radius: 50px;
+    font-size: 11.5px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ============ INSTRUCCIONES ============ */
+  .instrucciones {
+    background: #131c2b;
+    border-left: 4px solid #f59e0b;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 11.5px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    color: #c9d4e3;
+  }
+
+  .instrucciones strong { color: #fcd34d; }
+
+  .instrucciones ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 18px;
+    margin-top: 6px;
+  }
+
+  .instrucciones li::before {
+    content: "▸ ";
+    color: #f59e0b;
+    font-weight: bold;
+  }
+
+  .leyenda {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #263245;
+    font-size: 11px;
+  }
+
+  .leyenda .lam  { color: #a3e635; font-weight: 700; }
+  .leyenda .gear { color: #f472b6; font-weight: 700; }
+  .leyenda .bolt { color: #38bdf8; font-weight: 700; }
+
+  /* ============ SECCIONES ============ */
+  .seccion { margin-bottom: 12px; page-break-inside: avoid; }
+
+  .seccion-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #14213d, #0b1220);
+    border: 1px solid #263245;
+    border-bottom: none;
+    color: #fef3c7;
+    padding: 7px 14px;
+    border-radius: 8px 8px 0 0;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  .seccion-titulo .num {
+    background: #f59e0b;
+    color: #1a1205;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  /* ============ PREGUNTAS ============ */
+  .preguntas {
+    border: 1px solid #263245;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 10px 14px;
+    background: #101827;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+  }
+
+  .pregunta {
+    display: flex;
+    gap: 8px;
+    font-size: 11.5px;
+    line-height: 1.45;
+    color: #dbe4f0;
+    page-break-inside: avoid;
+  }
+
+  .pregunta .n {
+    flex-shrink: 0;
+    background: #1a2537;
+    color: #fcd34d;
+    border: 1px solid #334158;
+    font-weight: 700;
+    font-size: 11px;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pregunta code {
+    background: #1a2537;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 10.5px;
+    color: #fcd34d;
+  }
+
+  .pregunta.full { grid-column: 1 / -1; }
+
+  /* Badges */
+  .pregunta.lambda {
+    background: rgba(163,230,53,0.06);
+    border: 1px solid rgba(163,230,53,0.35);
+    border-radius: 6px;
+    padding: 6px 8px;
+  }
+
+  .pregunta.lambda::before {
+    content: "λ";
+    color: #a3e635;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 1;
+    align-self: flex-start;
+  }
+
+  .pregunta.lambda .n {
+    background: #a3e635;
+    color: #1a2e05;
+    border-color: #a3e635;
+  }
+
+  .pregunta.gear {
+    border-left: 3px solid #f472b6;
+    padding-left: 8px;
+  }
+
+  .pregunta.bolt {
+    border-left: 3px solid #38bdf8;
+    padding-left: 8px;
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 14mm;
+    right: 14mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #7c8ba1;
+    border-top: 1px dashed #263245;
+    padding-top: 6px;
+  }
+
+  /* ============ TABLA RÚBRICA ============ */
+  .rubrica {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+    margin-top: 6px;
+  }
+
+  .rubrica th {
+    background: #14213d;
+    color: #fcd34d;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #f59e0b;
+  }
+
+  .rubrica td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #263245;
+    color: #dbe4f0;
+  }
+
+  .rubrica tr:nth-child(even) td { background: #101827; }
+
+  .rubrica .pts {
+    font-weight: 700;
+    color: #a3e635;
+    text-align: center;
+    width: 80px;
+  }
+
+  .nota-bonus {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: rgba(56,189,248,0.08);
+    border-left: 3px solid #38bdf8;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #bae6fd;
+  }
+
+  /* ============ BLOQUE CÓDIGO ============ */
+  .soluciones-titulo {
+    background: linear-gradient(90deg, #78350f, #0f1520);
+    border: 1px solid #f59e0b;
+    color: #fcd34d;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin: 12px 0 8px;
+  }
+
+  .codigo-bloque {
+    background: #060b14;
+    color: #cbd5e1;
+    border: 1px solid #1f2a3a;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9.3px;
+    line-height: 1.5;
+    white-space: pre;
+    overflow-x: auto;
+    column-count: 2;
+    column-gap: 20px;
+    column-rule: 1px dashed #263245;
+  }
+
+  .codigo-bloque .kw { color: #f472b6; }
+  .codigo-bloque .fn { color: #60a5fa; }
+  .codigo-bloque .st { color: #fbbf24; }
+  .codigo-bloque .cm { color: #475569; font-style: italic; }
+  .codigo-bloque .lm { color: #a3e635; font-weight: bold; }
+  .codigo-bloque .nm { color: #fcd34d; }
+
+  /* ============ TAG DECORATIVA ============ */
+  .tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #f59e0b;
+    color: #1a1205;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 0 14px 0 10px;
+    text-transform: uppercase;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media screen and (max-width: 800px) {
+    .page { width: 100%; padding: 20px; }
+    .preguntas { grid-template-columns: 1fr; }
+    .codigo-bloque { column-count: 1; }
+    .instrucciones ul { grid-template-columns: 1fr; }
+    .leyenda { gap: 8px; }
+  }
+
+  @media print {
+    body { background: #0d1117; }
+    .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PÁGINA 1: ENUNCIADO                                          -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="tag">Versión 4</div>
+
+  <header class="header">
+    <h1>
+      Parcial de Python — v4
+      <span>Condicionales · for/while · def &amp; lambda · Ciencia de Datos (Nivel avanzado)</span>
+    </h1>
+    <div class="badge">
+      ⏱ 100 min<br>
+      📄 20 preguntas<br>
+      🎯 10 puntos
+    </div>
+  </header>
+
+  <div class="instrucciones">
+    <strong>Instrucciones generales</strong>
+    <ul>
+      <li>Individual, en computador</li>
+      <li><b>Sin conexión a internet</b></li>
+      <li>Solo Python estándar</li>
+      <li>Cada pregunta vale <b>0.5 pts</b></li>
+      <li>Guarde cada respuesta en un <code>.py</code></li>
+      <li>Se evalúa lógica, estilo y casos borde</li>
+    </ul>
+    <div class="leyenda">
+      <span><span class="lam">λ</span> = uso obligatorio de <b>lambda</b></span>
+      <span><span class="gear">▎</span> = manejo de <b>casos borde</b></span>
+      <span><span class="bolt">▎</span> = solución en <b>una sola pasada (O(n))</b></span>
+    </div>
+  </div>
+
+  <!-- SECCIÓN I -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">I</span> Condicionales · Preguntas 1 – 5
+    </div>
+    <div class="preguntas">
+      <div class="pregunta gear full"><span class="n">1</span><div><code>clasificar_balance(precision, recall)</code> → "Crítico" / "Desbalanceado" / "Óptimo" / "Aceptable". Valide rango [0,1].</div></div>
+      <div class="pregunta full"><span class="n">2</span><div>Con <code>resultados</code> (prob, etiqueta) y umbral 0.5, imprima TP/TN/FP/FN por caso con un <code>for</code>.</div></div>
+      <div class="pregunta bolt full"><span class="n">3</span><div><code>detectar_tendencia(valores)</code> → "ascendente"/"descendente"/"mixta"/"sin datos". Una sola pasada.</div></div>
+      <div class="pregunta full"><span class="n">4</span><div>De un dict anidado de modelos, imprima el <b>activo</b> con mayor <code>f1</code> o "Sin modelos activos".</div></div>
+      <div class="pregunta gear full"><span class="n">5</span><div><code>evaluar_umbral(valor, umbral, tolerancia=0.01)</code> → "sobre"/"bajo"/"en rango". Maneje <code>None</code>.</div></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN II -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">II</span> Ciclos <span style="color:#fcd34d">for</span> · Preguntas 6 – 10
+    </div>
+    <div class="preguntas">
+      <div class="pregunta bolt full"><span class="n">6</span><div>Con <code>precios</code>, calcule media, desviación estándar poblacional y outliers (&gt;1σ) en una pasada.</div></div>
+      <div class="pregunta full"><span class="n">7</span><div>Agrupe montos por moneda en un dict a partir de una lista de transacciones.</div></div>
+      <div class="pregunta"><span class="n">8</span><div>Transponga <code>[[1,2,3],[4,5,6]]</code> y multiplique por 2 → <code>[[2,8],[4,10],[6,12]]</code>.</div></div>
+      <div class="pregunta bolt"><span class="n">9</span><div>Sobre <code>serie</code>, en una pasada: máx, mín, índices y cantidad de valores repetidos.</div></div>
+      <div class="pregunta full"><span class="n">10</span><div>Cuente frecuencia de palabras en un texto y muestre las 3 más frecuentes.</div></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN III -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">III</span> Ciclos <span style="color:#fcd34d">while</span> · Preguntas 11 – 15
+    </div>
+    <div class="preguntas">
+      <div class="pregunta gear"><span class="n">11</span><div>Encuentre el primer primo &gt; 1000 con <code>while</code>. Cuente iteraciones.</div></div>
+      <div class="pregunta"><span class="n">12</span><div>Invierta los dígitos de <code>123456789</code> con <code>while</code> (sin <code>str</code>).</div></div>
+      <div class="pregunta bolt"><span class="n">13</span><div>Simule convergencia tipo K-Means hasta <code>|nuevo - centroide| ≤ 0.001</code>.</div></div>
+      <div class="pregunta"><span class="n">14</span><div>Calcule la mediana sin <code>sorted</code> ni <code>statistics</code> usando extracción repetida del mínimo.</div></div>
+      <div class="pregunta gear full"><span class="n">15</span><div>Monte Carlo: 10000 puntos, estime π con <code>4·dentro/N</code>. Reporte error absoluto.</div></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN IV -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">IV</span> Funciones <span style="color:#fcd34d">def</span> y <span style="color:#a3e635">lambda</span> · Preguntas 16 – 20
+    </div>
+    <div class="preguntas">
+      <div class="pregunta lambda gear full"><span class="n">16</span><div><code>varianza(lista)</code> con <code>def</code> (una pasada) y <code>varianza_l = lambda ...</code>. <code>None</code> si len &lt; 2.</div></div>
+      <div class="pregunta lambda full"><span class="n">17</span><div>Ordene tuplas <code>(nombre, precision, recall)</code> por F1-score descendente con <code>lambda</code>. Maneje división por cero.</div></div>
+      <div class="pregunta lambda bolt full"><span class="n">18</span><div>Con una sola comprensión + <code>lambda</code>, filtre positivos pares y elévelos al cuadrado.</div></div>
+      <div class="pregunta lambda"><span class="n">19</span><div>Con <code>lambda</code>, <code>map</code> y <code>reduce</code>, calcule el producto punto de dos vectores.</div></div>
+      <div class="pregunta lambda gear full"><span class="n">20</span><div><code>crear_evaluador(umbrales)</code> que retorne una <code>lambda</code> clasificando en "Q1..Q4".</div></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>Parcial de Python v4 · Ciencia de Datos</span>
+    <span>Página 1 de 2</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PÁGINA 2: RÚBRICA Y SOLUCIONES                               -->
+<!-- ============================================================ -->
+<div class="page">
+  <header class="header">
+    <h1>
+      Rúbrica y Soluciones — v4
+      <span>Documento para el docente · uso interno</span>
+    </h1>
+    <div class="badge">🔒 Confidencial</div>
+  </header>
+
+  <section class="seccion">
+    <div class="seccion-titulo"><span class="num">✓</span> Rúbrica de evaluación</div>
+    <table class="rubrica">
+      <thead>
+        <tr><th>Criterio</th><th class="pts">Puntos</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sintaxis correcta y uso adecuado de estructuras</td><td class="pts">0.2</td></tr>
+        <tr><td>Lógica correcta del algoritmo</td><td class="pts">0.2</td></tr>
+        <tr><td>Manejo de casos borde (listas vacías, división por cero, NaN)</td><td class="pts">0.1</td></tr>
+        <tr><td><b>Total por pregunta</b></td><td class="pts"><b>0.5</b></td></tr>
+      </tbody>
+    </table>
+    <div class="nota-bonus">
+      <b>Nota sobre ⚡:</b> las preguntas marcadas exigen una solución en <b>una sola pasada</b>; las que usen dos o más pasadas reciben máximo 0.3 pts.
+    </div>
+  </section>
+
+  <div class="soluciones-titulo">💡 Soluciones breves (referencia)</div>
+
+  <div class="codigo-bloque">
+<span class="cm"># 1</span>
+<span class="kw">def</span> <span class="fn">clasificar_balance</span>(p, r):
+    <span class="kw">if</span> <span class="kw">not</span> (<span class="st">0</span>&lt;=p&lt;=<span class="st">1</span> <span class="kw">and</span> <span class="st">0</span>&lt;=r&lt;=<span class="st">1</span>):
+        <span class="kw">return</span> <span class="st">"entrada inválida"</span>
+    <span class="kw">if</span> p &lt; <span class="st">0.5</span> <span class="kw">or</span> r &lt; <span class="st">0.5</span>: <span class="kw">return</span> <span class="st">"Crítico"</span>
+    <span class="kw">if</span> <span class="fn">abs</span>(p - r) &gt; <span class="st">0.2</span>: <span class="kw">return</span> <span class="st">"Desbalanceado"</span>
+    <span class="kw">if</span> p &gt;= <span class="st">0.8</span> <span class="kw">and</span> r &gt;= <span class="st">0.8</span>: <span class="kw">return</span> <span class="st">"Óptimo"</span>
+    <span class="kw">return</span> <span class="st">"Aceptable"</span>
+
+<span class="cm"># 3 — una pasada</span>
+<span class="kw">def</span> <span class="fn">detectar_tendencia</span>(v):
+    <span class="kw">if</span> <span class="fn">len</span>(v) &lt; <span class="st">2</span>: <span class="kw">return</span> <span class="st">"sin datos"</span>
+    asc = desc = <span class="st">True</span>
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(v)-<span class="st">1</span>):
+        <span class="kw">if</span> v[i] &gt;= v[i+<span class="st">1</span>]: asc = <span class="st">False</span>
+        <span class="kw">if</span> v[i] &lt;= v[i+<span class="st">1</span>]: desc = <span class="st">False</span>
+    <span class="kw">return</span> <span class="st">"ascendente"</span> <span class="kw">if</span> asc <span class="kw">else</span> <span class="st">"descendente"</span> <span class="kw">if</span> desc <span class="kw">else</span> <span class="st">"mixta"</span>
+
+<span class="cm"># 5</span>
+<span class="kw">def</span> <span class="fn">evaluar_umbral</span>(v, u, t=<span class="st">0.01</span>):
+    <span class="kw">if</span> v <span class="kw">is</span> <span class="st">None</span> <span class="kw">or</span> u <span class="kw">is</span> <span class="st">None</span>: <span class="kw">return</span> <span class="st">"entrada inválida"</span>
+    <span class="kw">if</span> v &gt; u + t: <span class="kw">return</span> <span class="st">"sobre"</span>
+    <span class="kw">if</span> v &lt; u - t: <span class="kw">return</span> <span class="st">"bajo"</span>
+    <span class="kw">return</span> <span class="st">"en rango"</span>
+
+<span class="cm"># 6 — una pasada (Welford)</span>
+precios = [<span class="st">100</span>,<span class="st">120</span>,<span class="st">80</span>,<span class="st">200</span>,<span class="st">150</span>,<span class="st">90</span>,<span class="st">300</span>]
+n = <span class="st">0</span>; media = <span class="st">0.0</span>; M2 = <span class="st">0.0</span>
+<span class="kw">for</span> x <span class="kw">in</span> precios:
+    n += <span class="st">1</span>
+    delta = x - media
+    media += delta / n
+    M2 += delta * (x - media)
+var = M2 / n
+sd = var ** <span class="st">0.5</span>
+out = <span class="fn">sum</span>(<span class="st">1</span> <span class="kw">for</span> x <span class="kw">in</span> precios <span class="kw">if</span> <span class="fn">abs</span>(x - media) &gt; sd)
+<span class="fn">print</span>(media, sd, out)
+
+<span class="cm"># 7</span>
+tx = [
+  {<span class="st">"id"</span>:<span class="st">1</span>,<span class="st">"monto"</span>:<span class="st">250</span>,<span class="st">"moneda"</span>:<span class="st">"USD"</span>},
+  {<span class="st">"id"</span>:<span class="st">2</span>,<span class="st">"monto"</span>:<span class="st">180</span>,<span class="st">"moneda"</span>:<span class="st">"EUR"</span>},
+  {<span class="st">"id"</span>:<span class="st">3</span>,<span class="st">"monto"</span>:<span class="st">420</span>,<span class="st">"moneda"</span>:<span class="st">"USD"</span>},
+  {<span class="st">"id"</span>:<span class="st">4</span>,<span class="st">"monto"</span>:<span class="st">90</span>, <span class="st">"moneda"</span>:<span class="st">"COP"</span>},
+  {<span class="st">"id"</span>:<span class="st">5</span>,<span class="st">"monto"</span>:<span class="st">310</span>,<span class="st">"moneda"</span>:<span class="st">"USD"</span>},
+]
+tot = {}
+<span class="kw">for</span> t <span class="kw">in</span> tx:
+    tot[t[<span class="st">"moneda"</span>]] = tot.<span class="fn">get</span>(t[<span class="st">"moneda"</span>], <span class="st">0</span>) + t[<span class="st">"monto"</span>]
+
+<span class="cm"># 9 — una pasada</span>
+s = [<span class="st">3</span>,<span class="st">1</span>,<span class="st">4</span>,<span class="st">1</span>,<span class="st">5</span>,<span class="st">9</span>,<span class="st">2</span>,<span class="st">6</span>,<span class="st">5</span>,<span class="st">3</span>,<span class="st">5</span>]
+mx = mn = s[<span class="st">0</span>]; ix = inx = <span class="st">0</span>; fr = {}
+<span class="kw">for</span> i, v <span class="kw">in</span> <span class="fn">enumerate</span>(s):
+    <span class="kw">if</span> v &gt; mx: mx, ix = v, i
+    <span class="kw">if</span> v &lt; mn: mn, inx = v, i
+    fr[v] = fr.<span class="fn">get</span>(v, <span class="st">0</span>) + <span class="st">1</span>
+rep = <span class="fn">sum</span>(<span class="st">1</span> <span class="kw">for</span> c <span class="kw">in</span> fr.<span class="fn">values</span>() <span class="kw">if</span> c &gt;= <span class="st">2</span>)
+
+<span class="cm"># 10</span>
+texto = <span class="st">"machine learning es una rama de la inteligencia artificial"</span>
+fr = {}
+<span class="kw">for</span> p <span class="kw">in</span> texto.<span class="fn">split</span>():
+    fr[p] = fr.<span class="fn">get</span>(p, <span class="st">0</span>) + <span class="st">1</span>
+top3 = <span class="fn">sorted</span>(fr.<span class="fn">items</span>(), key=<span class="lm">lambda</span> x: -x[<span class="st">1</span>])[:<span class="st">3</span>]
+
+<span class="cm"># 11</span>
+<span class="kw">def</span> <span class="fn">es_primo</span>(n):
+    <span class="kw">if</span> n &lt; <span class="st">2</span>: <span class="kw">return</span> <span class="st">False</span>
+    i = <span class="st">2</span>
+    <span class="kw">while</span> i*i &lt;= n:
+        <span class="kw">if</span> n % i == <span class="st">0</span>: <span class="kw">return</span> <span class="st">False</span>
+        i += <span class="st">1</span>
+    <span class="kw">return</span> <span class="st">True</span>
+
+c, it = <span class="st">1001</span>, <span class="st">0</span>
+<span class="kw">while</span> <span class="st">True</span>:
+    it += <span class="st">1</span>
+    <span class="kw">if</span> <span class="fn">es_primo</span>(c): <span class="kw">break</span>
+    c += <span class="st">1</span>
+
+<span class="cm"># 12</span>
+n, inv = <span class="st">123456789</span>, <span class="st">0</span>
+<span class="kw">while</span> n &gt; <span class="st">0</span>:
+    inv = inv * <span class="st">10</span> + n % <span class="st">10</span>
+    n //= <span class="st">10</span>
+
+<span class="cm"># 13</span>
+c, nv, it = <span class="st">0.0</span>, <span class="st">10.0</span>, <span class="st">0</span>
+<span class="kw">while</span> <span class="fn">abs</span>(nv - c) &gt; <span class="st">0.001</span>:
+    c, nv = nv, (nv + <span class="st">5</span>) / <span class="st">2</span>
+    it += <span class="st">1</span>
+
+<span class="cm"># 14 — mediana sin sorted</span>
+datos = [<span class="st">12</span>,<span class="st">7</span>,<span class="st">3</span>,<span class="st">9</span>,<span class="st">15</span>,<span class="st">2</span>,<span class="st">8</span>,<span class="st">4</span>]
+copia = datos[:]
+<span class="kw">def</span> <span class="fn">saca_min</span>(l):
+    k = <span class="st">0</span>
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="st">1</span>, <span class="fn">len</span>(l)):
+        <span class="kw">if</span> l[i] &lt; l[k]: k = i
+    <span class="kw">return</span> l.<span class="fn">pop</span>(k)
+m = <span class="fn">len</span>(copia) // <span class="st">2</span>
+<span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(m): <span class="fn">saca_min</span>(copia)
+mediana = <span class="fn">saca_min</span>(copia) <span class="kw">if</span> <span class="fn">len</span>(datos) % <span class="st">2</span> \
+    <span class="kw">else</span> (<span class="fn">saca_min</span>(copia) + <span class="fn">saca_min</span>(copia)) / <span class="st">2</span>
+
+<span class="cm"># 15</span>
+<span class="kw">import</span> random
+N, dentro = <span class="st">10000</span>, <span class="st">0</span>
+<span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(N):
+    x, y = random.<span class="fn">random</span>(), random.<span class="fn">random</span>()
+    <span class="kw">if</span> x*x + y*y &lt;= <span class="st">1</span>: dentro += <span class="st">1</span>
+pi = <span class="st">4</span> * dentro / N
+
+<span class="cm"># 16</span>
+<span class="kw">def</span> <span class="fn">varianza</span>(l):
+    <span class="kw">if</span> <span class="fn">len</span>(l) &lt; <span class="st">2</span>: <span class="kw">return</span> <span class="st">None</span>
+    n = <span class="fn">len</span>(l); m = <span class="st">0.0</span>; M2 = <span class="st">0.0</span>
+    <span class="kw">for</span> i, x <span class="kw">in</span> <span class="fn">enumerate</span>(l, <span class="st">1</span>):
+        d = x - m
+        m += d / i
+        M2 += d * (x - m)
+    <span class="kw">return</span> M2 / n
+
+varianza_l = <span class="lm">lambda</span> l: <span class="st">None</span> <span class="kw">if</span> <span class="fn">len</span>(l) &lt; <span class="st">2</span> <span class="kw">else</span> \
+    <span class="fn">sum</span>((x - <span class="fn">sum</span>(l)/<span class="fn">len</span>(l))**<span class="st">2</span> <span class="kw">for</span> x <span class="kw">in</span> l) / <span class="fn">len</span>(l)
+
+<span class="cm"># 17</span>
+modelos = [(<span class="st">"A"</span>,<span class="st">0.8</span>,<span class="st">0.9</span>),(<span class="st">"B"</span>,<span class="st">0.6</span>,<span class="st">0.6</span>),(<span class="st">"C"</span>,<span class="st">0.9</span>,<span class="st">0.7</span>)]
+orden = <span class="fn">sorted</span>(modelos,
+  key=<span class="lm">lambda</span> t: <span class="st">0</span> <span class="kw">if</span> (t[<span class="st">1</span>]+t[<span class="st">2</span>])==<span class="st">0</span>
+        <span class="kw">else</span> <span class="st">2</span>*t[<span class="st">1</span>]*t[<span class="st">2</span>]/(t[<span class="st">1</span>]+t[<span class="st">2</span>]),
+  reverse=<span class="st">True</span>)
+
+<span class="cm"># 18</span>
+nums = [-<span class="st">2</span>,<span class="st">3</span>,<span class="st">4</span>,-<span class="st">5</span>,<span class="st">6</span>,<span class="st">7</span>,<span class="st">8</span>]
+res = [(<span class="lm">lambda</span> x: x*x)(x) <span class="kw">for</span> x <span class="kw">in</span> nums
+       <span class="kw">if</span> x &gt; <span class="st">0</span> <span class="kw">and</span> x % <span class="st">2</span> == <span class="st">0</span>]
+
+<span class="cm"># 19</span>
+<span class="kw">from</span> functools <span class="kw">import</span> reduce
+v1 = [<span class="st">1</span>,<span class="st">2</span>,<span class="st">3</span>,<span class="st">4</span>]; v2 = [<span class="st">5</span>,<span class="st">6</span>,<span class="st">7</span>,<span class="st">8</span>]
+prod = <span class="fn">reduce</span>(<span class="lm">lambda</span> a, b: a + b,
+    <span class="fn">map</span>(<span class="lm">lambda</span> p: p[<span class="st">0</span>]*p[<span class="st">1</span>], <span class="fn">zip</span>(v1, v2)))
+
+<span class="cm"># 20</span>
+<span class="kw">def</span> <span class="fn">crear_evaluador</span>(umbrales):
+    <span class="kw">return</span> <span class="lm">lambda</span> v: <span class="fn">next</span>(
+        (<span class="st">f"Q{i+1}"</span> <span class="kw">for</span> i, u <span class="kw">in</span> <span class="fn">enumerate</span>(umbrales)
+         <span class="kw">if</span> v &lt; u),
+        <span class="st">f"Q{len(umbrales)+1}"</span>)
+
+ev = <span class="fn">crear_evaluador</span>([<span class="st">0.25</span>, <span class="st">0.5</span>, <span class="st">0.75</span>])
+<span class="fn">print</span>(ev(<span class="st">0.1</span>), ev(<span class="st">0.6</span>), ev(<span class="st">0.9</span>))
+  </div>
+
+  <div class="footer">
+    <span>Parcial de Python v4 · Ciencia de Datos</span>
+    <span>Página 2 de 2</span>
+  </div>
+</div>
+
+</body>
+</html>

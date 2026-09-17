@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Parcial Python v3 - Ciencia de Datos</title>
+<style>
+  @page { size: A4; margin: 0; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: #0b1020;
+    color: #e6e9f2;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ============ PÁGINA A4 ============ */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 10mm auto;
+    background: #0f1729;
+    padding: 12mm 14mm;
+    position: relative;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    page-break-after: always;
+    overflow: hidden;
+    border: 1px solid #1f2a44;
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  /* ============ HEADER ============ */
+  .header {
+    background: linear-gradient(135deg, #0f1729 0%, #1a2342 45%, #06b6d4 130%);
+    border: 1px solid #22d3ee;
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(34,211,238,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: 0.4px;
+    color: #f8fafc;
+  }
+
+  .header h1 span {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: #7dd3fc;
+    margin-top: 5px;
+    letter-spacing: 0.2px;
+  }
+
+  .badge {
+    background: rgba(34,211,238,0.12);
+    border: 1px solid #22d3ee;
+    color: #67e8f9;
+    padding: 8px 14px;
+    border-radius: 50px;
+    font-size: 11.5px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  /* ============ INSTRUCCIONES ============ */
+  .instrucciones {
+    background: #111a30;
+    border-left: 4px solid #22d3ee;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 11.5px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    color: #c7d2e0;
+  }
+
+  .instrucciones strong { color: #67e8f9; }
+
+  .instrucciones ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 18px;
+    margin-top: 6px;
+  }
+
+  .instrucciones li::before {
+    content: "▸ ";
+    color: #22d3ee;
+    font-weight: bold;
+  }
+
+  .leyenda {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #26314f;
+    font-size: 11px;
+  }
+
+  .leyenda b { color: #22d3ee; }
+  .leyenda .lam { color: #a3e635; font-weight: 700; }
+  .leyenda .gear { color: #f472b6; font-weight: 700; }
+
+  /* ============ SECCIONES ============ */
+  .seccion { margin-bottom: 12px; page-break-inside: avoid; }
+
+  .seccion-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #1a2342, #0f1729);
+    border: 1px solid #26314f;
+    border-bottom: none;
+    color: #f8fafc;
+    padding: 7px 14px;
+    border-radius: 8px 8px 0 0;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  .seccion-titulo .num {
+    background: #22d3ee;
+    color: #001018;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  /* ============ PREGUNTAS ============ */
+  .preguntas {
+    border: 1px solid #26314f;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 10px 14px;
+    background: #101a30;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+  }
+
+  .pregunta {
+    display: flex;
+    gap: 8px;
+    font-size: 11.5px;
+    line-height: 1.45;
+    color: #dbe3f0;
+    page-break-inside: avoid;
+  }
+
+  .pregunta .n {
+    flex-shrink: 0;
+    background: #1e293b;
+    color: #67e8f9;
+    border: 1px solid #334155;
+    font-weight: 700;
+    font-size: 11px;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pregunta code {
+    background: #1a2342;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 10.5px;
+    color: #7dd3fc;
+  }
+
+  .pregunta.full { grid-column: 1 / -1; }
+
+  /* Pregunta con lambda */
+  .pregunta.lambda {
+    background: rgba(163,230,53,0.06);
+    border: 1px solid rgba(163,230,53,0.35);
+    border-radius: 6px;
+    padding: 6px 8px;
+  }
+
+  .pregunta.lambda::before {
+    content: "λ";
+    color: #a3e635;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 1;
+    align-self: flex-start;
+  }
+
+  .pregunta.lambda .n {
+    background: #a3e635;
+    color: #1a2e05;
+    border-color: #a3e635;
+  }
+
+  /* Pregunta con caso borde */
+  .pregunta.gear {
+    border-left: 3px solid #f472b6;
+    padding-left: 8px;
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 14mm;
+    right: 14mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #64748b;
+    border-top: 1px dashed #26314f;
+    padding-top: 6px;
+  }
+
+  /* ============ TABLA RÚBRICA ============ */
+  .rubrica {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+    margin-top: 6px;
+  }
+
+  .rubrica th {
+    background: #1a2342;
+    color: #67e8f9;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #22d3ee;
+  }
+
+  .rubrica td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #26314f;
+    color: #dbe3f0;
+  }
+
+  .rubrica tr:nth-child(even) td { background: #101a30; }
+
+  .rubrica .pts {
+    font-weight: 700;
+    color: #a3e635;
+    text-align: center;
+    width: 80px;
+  }
+
+  /* ============ BLOQUE CÓDIGO ============ */
+  .soluciones-titulo {
+    background: linear-gradient(90deg, #065f46, #0f1729);
+    border: 1px solid #10b981;
+    color: #a7f3d0;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin: 12px 0 8px;
+  }
+
+  .codigo-bloque {
+    background: #060c1a;
+    color: #cbd5e1;
+    border: 1px solid #1f2a44;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9.5px;
+    line-height: 1.5;
+    white-space: pre;
+    overflow-x: auto;
+    column-count: 2;
+    column-gap: 20px;
+    column-rule: 1px dashed #26314f;
+  }
+
+  .codigo-bloque .kw { color: #f472b6; }
+  .codigo-bloque .fn { color: #60a5fa; }
+  .codigo-bloque .st { color: #fbbf24; }
+  .codigo-bloque .cm { color: #475569; font-style: italic; }
+  .codigo-bloque .lm { color: #a3e635; font-weight: bold; }
+  .codigo-bloque .nm { color: #67e8f9; }
+
+  /* ============ TAG DECORATIVA ============ */
+  .tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #22d3ee;
+    color: #001018;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 0 14px 0 10px;
+    text-transform: uppercase;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media screen and (max-width: 800px) {
+    .page { width: 100%; padding: 20px; }
+    .preguntas { grid-template-columns: 1fr; }
+    .codigo-bloque { column-count: 1; }
+    .instrucciones ul { grid-template-columns: 1fr; }
+    .leyenda { flex-wrap: wrap; }
+  }
+
+  @media print {
+    body { background: #0b1020; }
+    .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PÁGINA 1: ENUNCIADO                                          -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="tag">Versión 3</div>
+
+  <header class="header">
+    <h1>
+      Parcial de Python — v3
+      <span>Condicionales · for/while · def &amp; lambda · Ciencia de Datos</span>
+    </h1>
+    <div class="badge">
+      ⏱ 90 min<br>
+      📄 20 preguntas<br>
+      🎯 10 puntos
+    </div>
+  </header>
+
+  <div class="instrucciones">
+    <strong>Instrucciones generales</strong>
+    <ul>
+      <li>Individual, en computador</li>
+      <li><b>Sin conexión a internet</b></li>
+      <li>Solo Python estándar</li>
+      <li>Cada pregunta vale <b>0.5 pts</b></li>
+      <li>Guarde cada respuesta en un <code>.py</code></li>
+      <li>Se evalúa lógica y casos borde</li>
+    </ul>
+    <div class="leyenda">
+      <span><span class="lam">λ</span> = uso obligatorio de <b>lambda</b></span>
+      <span><span class="gear">▎</span> = manejo obligatorio de <b>casos borde</b></span>
+    </div>
+  </div>
+
+  <!-- SECCIÓN I -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">I</span> Condicionales · Preguntas 1 – 5
+    </div>
+    <div class="preguntas">
+      <div class="pregunta full"><span class="n">1</span><div>Cree <code>categoria_riesgo(p)</code> con 5 categorías: Muy bajo / Bajo / Medio / Alto / Muy alto según umbrales 0.2, 0.4, 0.6, 0.8.</div></div>
+      <div class="pregunta full"><span class="n">2</span><div>Con <code>predicciones=[0,1,1,0,1,0,0,1]</code> y <code>reales=[0,1,0,0,1,1,0,1]</code>, imprima TP/TN/FP/FN por cada par con un <code>for</code>.</div></div>
+      <div class="pregunta"><span class="n">3</span><div><code>es_mejora(actual, anterior)</code>: retorna <code>True</code> si mejora, <code>False</code> si igual, <code>"empeoró"</code> si baja.</div></div>
+      <div class="pregunta"><span class="n">4</span><div>Con <code>{"precision":0.82,"recall":0.75,"f1":0.78}</code>, imprima "Modelo balanceado" si todas &gt; 0.75, si no indique cuáles revisar.</div></div>
+      <div class="pregunta full"><span class="n">5</span><div><code>validar_dato(x)</code>: retorne "numérico válido", "nulo" o "inválido" (detecte NaN con <code>x != x</code>).</div></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN II -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">II</span> Ciclos <span style="color:#22d3ee">for</span> · Preguntas 6 – 10
+    </div>
+    <div class="preguntas">
+      <div class="pregunta"><span class="n">6</span><div>Con <code>tiempos=[1.2,0.8,1.5,0.9,1.1,2.3]</code>, halle el promedio y cuántos superan <code>prom+0.3</code>.</div></div>
+      <div class="pregunta"><span class="n">7</span><div>Con <code>ventas=[120,340,210,450,380,500]</code>, genere una lista con "alta"/"media"/"baja" según umbrales 400 y 200.</div></div>
+      <div class="pregunta"><span class="n">8</span><div>De una lista de dicts con clave <code>activo</code>, sume solo los <code>valor</code> de registros activos.</div></div>
+      <div class="pregunta"><span class="n">9</span><div>Transponga <code>[[1,2,3],[4,5,6]]</code> → <code>[[1,4],[2,5],[3,6]]</code> con <code>for</code> anidados.</div></div>
+      <div class="pregunta full"><span class="n">10</span><div>Cuente ocurrencias de "data" en <code>"data science data analysis data"</code> sin usar <code>.count()</code>.</div></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN III -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">III</span> Ciclos <span style="color:#22d3ee">while</span> · Preguntas 11 – 15
+    </div>
+    <div class="preguntas">
+      <div class="pregunta"><span class="n">11</span><div>Imprima Fibonacci hasta superar 500 con <code>while</code>.</div></div>
+      <div class="pregunta"><span class="n">12</span><div>Sume los dígitos de <code>987654321</code> con <code>while</code> (sin <code>str</code>).</div></div>
+      <div class="pregunta gear"><span class="n">13</span><div>Entrenamiento: <code>loss=5.0</code>, mientras &gt; 0.1 → <code>loss = loss*0.9 - 0.05</code>. Cuente iteraciones.</div></div>
+      <div class="pregunta"><span class="n">14</span><div>Con <code>[10,20,30,-1,50,60]</code>, sume con <code>while</code> hasta hallar negativo.</div></div>
+      <div class="pregunta full"><span class="n">15</span><div>Acumule <code>random.randint(1,20)</code> hasta ≥ 100. Imprima pasos y total.</div></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN IV -->
+  <section class="seccion">
+    <div class="seccion-titulo">
+      <span class="num">IV</span> Funciones <span style="color:#22d3ee">def</span> y <span style="color:#a3e635">lambda</span> · Preguntas 16 – 20
+    </div>
+    <div class="preguntas">
+      <div class="pregunta lambda gear full"><span class="n">16</span><div>Cree <code>rango(lista)</code> con <code>def</code> (sin <code>max</code>/<code>min</code>, usando <code>for</code>) y su versión <code>rango_l = lambda ...</code>. Retornan <code>None</code> si está vacía.</div></div>
+      <div class="pregunta lambda full"><span class="n">17</span><div>Ordene <code>personas</code> por <b>edad ascendente</b> y <b>salario descendente</b> con <code>lambda</code> + <code>sorted()</code>.</div></div>
+      <div class="pregunta lambda"><span class="n">18</span><div>Con <code>lambda</code> + <code>filter()</code>, extraiga valores en [0.4, 0.9] de <code>[0.15,0.85,0.42,0.91,0.33,0.67]</code>.</div></div>
+      <div class="pregunta lambda"><span class="n">19</span><div>Con <code>lambda</code> + <code>map()</code>, transforme <code>[(1,2),(3,4),(5,6)]</code> en <code>[3,7,11]</code>.</div></div>
+      <div class="pregunta lambda gear full"><span class="n">20</span><div>Cree <code>crear_pipeline(umbral, factor)</code> que retorne una <code>lambda</code> que multiplique por <code>factor</code> y devuelva <code>"aceptado"</code>/<code>"rechazado"</code>.</div></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>Parcial de Python v3 · Ciencia de Datos</span>
+    <span>Página 1 de 2</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PÁGINA 2: RÚBRICA Y SOLUCIONES                               -->
+<!-- ============================================================ -->
+<div class="page">
+  <header class="header">
+    <h1>
+      Rúbrica y Soluciones — v3
+      <span>Documento para el docente · uso interno</span>
+    </h1>
+    <div class="badge">🔒 Confidencial</div>
+  </header>
+
+  <section class="seccion">
+    <div class="seccion-titulo"><span class="num">✓</span> Rúbrica de evaluación</div>
+    <table class="rubrica">
+      <thead>
+        <tr><th>Criterio</th><th class="pts">Puntos</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sintaxis correcta y uso adecuado de estructuras</td><td class="pts">0.2</td></tr>
+        <tr><td>Lógica correcta del algoritmo</td><td class="pts">0.2</td></tr>
+        <tr><td>Manejo de casos borde (listas vacías, división por cero, NaN)</td><td class="pts">0.1</td></tr>
+        <tr><td><b>Total por pregunta</b></td><td class="pts"><b>0.5</b></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="soluciones-titulo">💡 Soluciones breves (referencia)</div>
+
+  <div class="codigo-bloque">
+<span class="cm"># 1</span>
+<span class="kw">def</span> <span class="fn">categoria_riesgo</span>(p):
+    <span class="kw">if</span> p &lt; <span class="st">0.2</span>: <span class="kw">return</span> <span class="st">"Muy bajo"</span>
+    <span class="kw">elif</span> p &lt; <span class="st">0.4</span>: <span class="kw">return</span> <span class="st">"Bajo"</span>
+    <span class="kw">elif</span> p &lt; <span class="st">0.6</span>: <span class="kw">return</span> <span class="st">"Medio"</span>
+    <span class="kw">elif</span> p &lt; <span class="st">0.8</span>: <span class="kw">return</span> <span class="st">"Alto"</span>
+    <span class="kw">else</span>: <span class="kw">return</span> <span class="st">"Muy alto"</span>
+
+<span class="cm"># 2</span>
+pred = [<span class="st">0</span>,<span class="st">1</span>,<span class="st">1</span>,<span class="st">0</span>,<span class="st">1</span>,<span class="st">0</span>,<span class="st">0</span>,<span class="st">1</span>]
+real = [<span class="st">0</span>,<span class="st">1</span>,<span class="st">0</span>,<span class="st">0</span>,<span class="st">1</span>,<span class="st">1</span>,<span class="st">0</span>,<span class="st">1</span>]
+<span class="kw">for</span> p, r <span class="kw">in</span> <span class="fn">zip</span>(pred, real):
+    <span class="kw">if</span> p==<span class="st">1</span> <span class="kw">and</span> r==<span class="st">1</span>: <span class="fn">print</span>(<span class="st">"TP"</span>)
+    <span class="kw">elif</span> p==<span class="st">0</span> <span class="kw">and</span> r==<span class="st">0</span>: <span class="fn">print</span>(<span class="st">"TN"</span>)
+    <span class="kw">elif</span> p==<span class="st">1</span> <span class="kw">and</span> r==<span class="st">0</span>: <span class="fn">print</span>(<span class="st">"FP"</span>)
+    <span class="kw">else</span>: <span class="fn">print</span>(<span class="st">"FN"</span>)
+
+<span class="cm"># 3</span>
+<span class="kw">def</span> <span class="fn">es_mejora</span>(actual, anterior):
+    <span class="kw">if</span> actual &gt; anterior: <span class="kw">return</span> <span class="st">True</span>
+    <span class="kw">elif</span> actual == anterior: <span class="kw">return</span> <span class="st">False</span>
+    <span class="kw">else</span>: <span class="kw">return</span> <span class="st">"empeoró"</span>
+
+<span class="cm"># 4</span>
+m = {<span class="st">"precision"</span>:<span class="st">0.82</span>,<span class="st">"recall"</span>:<span class="st">0.75</span>,<span class="st">"f1"</span>:<span class="st">0.78</span>}
+<span class="kw">if</span> <span class="fn">all</span>(v &gt; <span class="st">0.75</span> <span class="kw">for</span> v <span class="kw">in</span> m.<span class="fn">values</span>()):
+    <span class="fn">print</span>(<span class="st">"Modelo balanceado"</span>)
+<span class="kw">else</span>:
+    <span class="kw">for</span> k, v <span class="kw">in</span> m.<span class="fn">items</span>():
+        <span class="kw">if</span> v &lt;= <span class="st">0.75</span>: <span class="fn">print</span>(<span class="st">f"Revisar {k}"</span>)
+
+<span class="cm"># 5</span>
+<span class="kw">def</span> <span class="fn">validar_dato</span>(x):
+    <span class="kw">if</span> x <span class="kw">is</span> <span class="st">None</span>: <span class="kw">return</span> <span class="st">"nulo"</span>
+    <span class="kw">if</span> <span class="fn">isinstance</span>(x, <span class="fn">bool</span>): <span class="kw">return</span> <span class="st">"inválido"</span>
+    <span class="kw">if</span> <span class="fn">isinstance</span>(x, (<span class="fn">int</span>, <span class="fn">float</span>)):
+        <span class="kw">if</span> x != x: <span class="kw">return</span> <span class="st">"inválido"</span>
+        <span class="kw">return</span> <span class="st">"numérico válido"</span>
+    <span class="kw">return</span> <span class="st">"inválido"</span>
+
+<span class="cm"># 6</span>
+t = [<span class="st">1.2</span>,<span class="st">0.8</span>,<span class="st">1.5</span>,<span class="st">0.9</span>,<span class="st">1.1</span>,<span class="st">2.3</span>]
+p = <span class="fn">sum</span>(t) / <span class="fn">len</span>(t)
+c = <span class="st">0</span>
+<span class="kw">for</span> x <span class="kw">in</span> t:
+    <span class="kw">if</span> x &gt; p + <span class="st">0.3</span>: c += <span class="st">1</span>
+<span class="fn">print</span>(p, c)
+
+<span class="cm"># 7</span>
+v = [<span class="st">120</span>,<span class="st">340</span>,<span class="st">210</span>,<span class="st">450</span>,<span class="st">380</span>,<span class="st">500</span>]
+cat = []
+<span class="kw">for</span> x <span class="kw">in</span> v:
+    <span class="kw">if</span> x &gt;= <span class="st">400</span>: cat.<span class="fn">append</span>(<span class="st">"alta"</span>)
+    <span class="kw">elif</span> x &gt;= <span class="st">200</span>: cat.<span class="fn">append</span>(<span class="st">"media"</span>)
+    <span class="kw">else</span>: cat.<span class="fn">append</span>(<span class="st">"baja"</span>)
+
+<span class="cm"># 8</span>
+regs = [
+  {<span class="st">"id"</span>:<span class="st">1</span>,<span class="st">"valor"</span>:<span class="st">10</span>,<span class="st">"activo"</span>:<span class="st">True</span>},
+  {<span class="st">"id"</span>:<span class="st">2</span>,<span class="st">"valor"</span>:<span class="st">25</span>,<span class="st">"activo"</span>:<span class="st">False</span>},
+  {<span class="st">"id"</span>:<span class="st">3</span>,<span class="st">"valor"</span>:<span class="st">40</span>,<span class="st">"activo"</span>:<span class="st">True</span>},
+  {<span class="st">"id"</span>:<span class="st">4</span>,<span class="st">"valor"</span>:<span class="st">15</span>,<span class="st">"activo"</span>:<span class="st">True</span>},
+]
+s = <span class="st">0</span>
+<span class="kw">for</span> r <span class="kw">in</span> regs:
+    <span class="kw">if</span> r[<span class="st">"activo"</span>]: s += r[<span class="st">"valor"</span>]
+
+<span class="cm"># 9</span>
+m = [[<span class="st">1</span>,<span class="st">2</span>,<span class="st">3</span>],[<span class="st">4</span>,<span class="st">5</span>,<span class="st">6</span>]]
+tr = []
+<span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(m[<span class="st">0</span>])):
+    fila = []
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(m)):
+        fila.<span class="fn">append</span>(m[i][j])
+    tr.<span class="fn">append</span>(fila)
+
+<span class="cm"># 11</span>
+a, b = <span class="st">0</span>, <span class="st">1</span>
+<span class="kw">while</span> b &lt;= <span class="st">500</span>:
+    <span class="fn">print</span>(b); a, b = b, a + b
+
+<span class="cm"># 12</span>
+n, s = <span class="st">987654321</span>, <span class="st">0</span>
+<span class="kw">while</span> n &gt; <span class="st">0</span>:
+    s += n % <span class="st">10</span>; n //= <span class="st">10</span>
+<span class="fn">print</span>(s)
+
+<span class="cm"># 13</span>
+loss, it = <span class="st">5.0</span>, <span class="st">0</span>
+<span class="kw">while</span> loss &gt; <span class="st">0.1</span>:
+    loss = loss * <span class="st">0.9</span> - <span class="st">0.05</span>
+    it += <span class="st">1</span>
+<span class="fn">print</span>(it, loss)
+
+<span class="cm"># 14</span>
+v = [<span class="st">10</span>,<span class="st">20</span>,<span class="st">30</span>,-<span class="st">1</span>,<span class="st">50</span>,<span class="st">60</span>]
+i, s = <span class="st">0</span>, <span class="st">0</span>
+<span class="kw">while</span> i &lt; <span class="fn">len</span>(v) <span class="kw">and</span> v[i] &gt;= <span class="st">0</span>:
+    s += v[i]; i += <span class="st">1</span>
+<span class="fn">print</span>(s)
+
+<span class="cm"># 15</span>
+<span class="kw">import</span> random
+obj, acc, p = <span class="st">100</span>, <span class="st">0</span>, <span class="st">0</span>
+<span class="kw">while</span> acc &lt; obj:
+    acc += random.<span class="fn">randint</span>(<span class="st">1</span>, <span class="st">20</span>); p += <span class="st">1</span>
+<span class="fn">print</span>(p, acc)
+
+<span class="cm"># 16</span>
+<span class="kw">def</span> <span class="fn">rango</span>(lista):
+    <span class="kw">if</span> <span class="kw">not</span> lista: <span class="kw">return</span> <span class="st">None</span>
+    may = men = lista[<span class="st">0</span>]
+    <span class="kw">for</span> x <span class="kw">in</span> lista:
+        <span class="kw">if</span> x &gt; may: may = x
+        <span class="kw">if</span> x &lt; men: men = x
+    <span class="kw">return</span> may - men
+
+rango_l = <span class="lm">lambda</span> l: <span class="st">None</span> <span class="kw">if</span> <span class="kw">not</span> l <span class="kw">else</span> <span class="fn">max</span>(l) - <span class="fn">min</span>(l)
+
+<span class="cm"># 17</span>
+personas = [
+  {<span class="st">"nombre"</span>:<span class="st">"Ana"</span>,<span class="st">"edad"</span>:<span class="st">30</span>,<span class="st">"salario"</span>:<span class="st">2500</span>},
+  {<span class="st">"nombre"</span>:<span class="st">"Luis"</span>,<span class="st">"edad"</span>:<span class="st">25</span>,<span class="st">"salario"</span>:<span class="st">3000</span>},
+  {<span class="st">"nombre"</span>:<span class="st">"Marta"</span>,<span class="st">"edad"</span>:<span class="st">30</span>,<span class="st">"salario"</span>:<span class="st">3200</span>},
+  {<span class="st">"nombre"</span>:<span class="st">"Pedro"</span>,<span class="st">"edad"</span>:<span class="st">25</span>,<span class="st">"salario"</span>:<span class="st">2800</span>},
+]
+orden = <span class="fn">sorted</span>(personas,
+    key=<span class="lm">lambda</span> p: (p[<span class="st">"edad"</span>], -p[<span class="st">"salario"</span>]))
+
+<span class="cm"># 18</span>
+f = <span class="fn">list</span>(<span class="fn">filter</span>(<span class="lm">lambda</span> x: <span class="st">0.4</span> &lt;= x &lt;= <span class="st">0.9</span>,
+    [<span class="st">0.15</span>,<span class="st">0.85</span>,<span class="st">0.42</span>,<span class="st">0.91</span>,<span class="st">0.33</span>,<span class="st">0.67</span>]))
+
+<span class="cm"># 19</span>
+s = <span class="fn">list</span>(<span class="fn">map</span>(<span class="lm">lambda</span> t: t[<span class="st">0</span>] + t[<span class="st">1</span>],
+    [(<span class="st">1</span>,<span class="st">2</span>),(<span class="st">3</span>,<span class="st">4</span>),(<span class="st">5</span>,<span class="st">6</span>)]))
+
+<span class="cm"># 20</span>
+<span class="kw">def</span> <span class="fn">crear_pipeline</span>(umbral, factor):
+    <span class="kw">return</span> <span class="lm">lambda</span> v: <span class="st">"aceptado"</span> <span class="kw">if</span> v * factor &gt; umbral <span class="kw">else</span> <span class="st">"rechazado"</span>
+
+pipe = <span class="fn">crear_pipeline</span>(<span class="st">0.6</span>, <span class="st">1.5</span>)
+<span class="fn">print</span>(pipe(<span class="st">0.5</span>))  <span class="cm"># aceptado</span>
+<span class="fn">print</span>(pipe(<span class="st">0.3</span>))  <span class="cm"># rechazado</span>
+  </div>
+
+  <div class="footer">
+    <span>Parcial de Python v3 · Ciencia de Datos</span>
+    <span>Página 2 de 2</span>
+  </div>
+</div>
+
+</body>
+</html>
